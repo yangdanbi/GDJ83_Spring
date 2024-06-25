@@ -19,7 +19,7 @@ public class DepartmentDAO {
 
 	public List<DepartmentDTO> getList() throws Exception {
 		Connection con = dbConnection.getConnection();
-		System.out.println(con);
+		System.out.println("DepartmentDAO con : " + con);
 
 		// sql문 작성
 		String sql = "SELECT * FROM DEPARTMENTS ORDER BY DEPARTMENT_ID ASC";
