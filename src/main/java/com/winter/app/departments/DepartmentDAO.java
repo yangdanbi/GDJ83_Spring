@@ -3,6 +3,8 @@ package com.winter.app.departments;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,7 +17,7 @@ public class DepartmentDAO {
 	@Autowired
 	private DBConnection dbConnection;
 
-	public void getList() throws Exception {
+	public List<DepartmentDTO> getList() throws Exception {
 		Connection con = dbConnection.getConnection();
 		System.out.println(con);
 
@@ -32,16 +34,26 @@ public class DepartmentDAO {
 		// rs에 받음 = 최종결과
 		ResultSet rs = st.executeQuery();
 
+		ArrayList<DepartmentDTO> ar = new ArrayList<DepartmentDTO>();
 		// 읽었을때 데이터가 있으면 true 없으면false
 		while (rs.next()) {
+			DepartmentDTO departmentDTO = new DepartmentDTO();
 			int id = rs.getInt("DEPARTMENT_ID");
 			String name = rs.getString("DEPARTMENT_NAME");
-			System.out.println("DEPARTMENT_ID : " + id + ", DEPARTMENT_NAME : " + name);
+			departmentDTO.setDepartment_id(id);
+			departmentDTO.setDepartment_name(name);
+			departmentDTO.setManager_id(rs.getLong("MANAGER_ID"));
+			departmentDTO.setLocation_id(rs.getInt("LOCATION_ID"));
+
+			ar.add(departmentDTO);// 리스트에 하나씩 저장되어져있음
+			// System.out.println("DEPARTMENT_ID : " + id + ", DEPARTMENT_NAME : " + name);
 		}
 		// 자원해제
 		rs.close();
 		st.close();
 		con.close();
+
+		return ar;
 
 	}
 
