@@ -81,4 +81,47 @@ public class DepartmentController {
 		return url;
 	}
 
+	// delete
+	@RequestMapping("delete")
+	public String delete(DepartmentDTO departmentDTO, Model model) throws Exception {
+		System.out.println("Department delete() 실행");
+		int result = departmentService.delete(departmentDTO);
+		String url = "commons/message"; // 실패했을때
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "삭제에 실패했습니다.");
+			model.addAttribute("url", "./list");
+
+		}
+		return url;
+	}
+
+	// update
+	@RequestMapping("update") // 메서드 지정하지 않으면 get
+	public String update(int department_id, Model model) throws Exception {
+		System.out.println("Department update() 실행");
+
+		DepartmentDTO departmentDTO = departmentService.getDetail(department_id);
+		String url = "commons/message";
+		if (departmentDTO != null) {
+			model.addAttribute("dto", departmentDTO);
+			url = "department/update";
+		} else {
+			model.addAttribute("result", "없는 부서입니다.");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
+
+	// 오버로딩
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(DepartmentDTO departmentDTO) throws Exception {
+		int result = departmentService.update(departmentDTO);
+
+		return "redirect:list";
+
+	}
+
 }

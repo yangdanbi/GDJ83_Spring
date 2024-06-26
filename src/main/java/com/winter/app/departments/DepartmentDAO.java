@@ -116,4 +116,46 @@ public class DepartmentDAO {
 		return result;
 	}
 
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+		Connection con = dbConnection.getConnection();
+
+		String sql = "DELETE DEPARTMENTS WHERE DEPARTMENT_ID = ?";
+
+		PreparedStatement st = con.prepareStatement(sql);
+
+		// 4. ? 세팅
+		st.setInt(1, departmentDTO.getDepartment_id());
+
+		int result = st.executeUpdate();// insert,update,delete 는 int로 받아야ㅕ함
+
+		st.close();
+		con.close();
+
+		return result;
+
+	}
+
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+		int result = 0;
+
+		Connection con = dbConnection.getConnection();
+
+		String sql = "UPDATE DEPARTMENTS SET DEPARTMENT_NAME=?, MANAGER_ID=?, LOCATION_ID=?"
+				+ "WHERE DEPARTMENT_ID = ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		// 인덱스 번호는 ? 순서에 대한 번호
+		st.setString(1, departmentDTO.getDepartment_name());// name 꺼내기
+		st.setLong(2, departmentDTO.getManager_id());
+		st.setInt(3, departmentDTO.getLocation_id());
+		st.setInt(4, departmentDTO.getDepartment_id());
+
+		result = st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return result;
+
+	}
+
 }

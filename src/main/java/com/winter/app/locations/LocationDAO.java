@@ -105,4 +105,20 @@ public class LocationDAO {
 
 	}
 
+	public int delete(LocationDTO locationDTO) throws Exception {
+		Connection con = dbConnection.getConnection();
+
+		String sql = "DELETE LOCATIONS WHERE LOCATION_ID = ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, locationDTO.getLocation_id());
+
+		int result = st.executeUpdate();
+
+		st.close();
+		con.close();
+
+		return result;
+
+	}
+
 }

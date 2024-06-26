@@ -49,4 +49,20 @@ public class LocationController {
 
 	}
 
+	@RequestMapping("delete")
+	public String delete(LocationDTO locationDTO, Model model) throws Exception {
+		int result = locationService.delete(locationDTO);
+		String url = "commons/message"; // 실패했을때
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "삭제에 실패했습니다.");
+			model.addAttribute("url", "./list");
+
+		}
+		return url;
+
+	}
+
 }
