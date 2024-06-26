@@ -120,5 +120,30 @@ public class LocationDAO {
 		return result;
 
 	}
+	public int update(LocationDTO locationDTO) throws Exception{
+		int result =0;
+		
+		Connection con = dbConnection.getConnection();//db연결
+		
+		String sql = "UPDATE LOCATIONS SET STREET_ADDRESS =?,POSTAL_CODE=?,CITY=?,STATE_PROVINCE=?,COUNTRY_ID=?"
+				+ "WHERE LOCATION_ID = ?";
+		System.out.println("LocationDAO update실행");
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, locationDTO.getStreet_address());
+		st.setString(2, locationDTO.getPostal_code());
+		st.setString(3, locationDTO.getCity());
+		st.setString(4, locationDTO.getState_province());
+		st.setString(5, locationDTO.getCountry_id());
+		st.setInt(6, locationDTO.getLocation_id());
+		System.out.println(locationDTO.getLocation_id());
+		System.out.println("수정:"+locationDTO.getStreet_address());
+
+		result = st.executeUpdate();
+		st.close();
+		con.close();
+
+		return result;
+		
+	}
 
 }

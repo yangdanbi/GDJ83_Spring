@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.winter.app.departments.DepartmentDTO;
+
 @Controller
 @RequestMapping("/location/*")
 public class LocationController {
@@ -63,6 +65,29 @@ public class LocationController {
 		}
 		return url;
 
+	}
+
+	@RequestMapping("update")
+	public String update(int location_id,Model model) throws Exception {
+		LocationDTO locationDTO = locationService.getDetail(location_id);
+		String url = "commons/message";
+		if (locationDTO != null) {
+			model.addAttribute("dto", locationDTO);
+			url = "location/update";
+		} else {
+			model.addAttribute("result", "없는 도시입니다.");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+		
+		
+	}
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(LocationDTO locationDTO) throws Exception {
+		int result = locationService.update(locationDTO);
+
+		return "redirect:./list";
+		
 	}
 
 }

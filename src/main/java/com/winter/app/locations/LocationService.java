@@ -30,5 +30,8 @@ public class LocationService {
 
 		return locationDAO.delete(locationDTO);
 	}
+	public int update(LocationDTO locationDTO) throws Exception {
+		return locationDAO.update(locationDTO);
+	}
 
 }
