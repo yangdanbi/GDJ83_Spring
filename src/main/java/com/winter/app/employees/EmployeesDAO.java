@@ -9,7 +9,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.winter.app.departments.DepartmentDTO;
 import com.winter.app.utill.DBConnection;
 
 @Repository
@@ -37,7 +36,6 @@ public class EmployeesDAO {
 			employeesDTO.setHire_date(rs.getDate("HIRE_DATE"));
 
 			ar.add(employeesDTO);
-			// System.out.println("DEPARTMENT_ID : " + id + ", DEPARTMENT_NAME : " + name);
 		}
 		// 자원해제
 		rs.close();

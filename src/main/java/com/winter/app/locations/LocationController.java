@@ -23,4 +23,30 @@ public class LocationController {
 		model.addAttribute("list", ar);// jsp로 보내기
 	}
 
+	@RequestMapping("detail")
+	public void getDetail(Model model, int location_id) throws Exception {
+		LocationDTO locationDTO = locationService.getDetail(location_id);
+		model.addAttribute("dto", locationDTO);// jsp로 보내기
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public void add() {
+
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(LocationDTO locationDTO, Model model) throws Exception {
+		int result = locationService.add(locationDTO);
+		String url = "";
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "등록에 실패했습니다.");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+
+	}
+
 }

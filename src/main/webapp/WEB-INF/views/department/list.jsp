@@ -11,13 +11,19 @@
 	rel="stylesheet"
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
+	<style type="text/css">
+		body{text-align: center;}
+	</style>
 </head>
 <body>
 	<h2>department list</h2>
-	<div class="row col-md-8">
-		<table class="table table-striped table-hover">
+	<div class="row col-md-8" >
+	<div>
+			<a href="./add" class ="btn btn-outline-warning" style="  margin: 10px; text-align: center; ">부서등록</a>
+		</div>
+		<table class="table table-warning" style="text-align: center; margin-left: 200px" >
 			<thead>
-				<tr>
+				<tr >
 					<th>부서번호</th>
 					<th>부서명</th>
 					<th>관리자</th>
@@ -27,7 +33,7 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.department_id}</td>
-						<td>${dto.department_name}</td>
+						<td><a href="./detail?department_id=${dto.department_id}">${dto.department_name}</a></td>
 						<td>${dto.manager_id}</td>
 					</tr>
 
@@ -36,6 +42,7 @@
 			</tbody>
 
 		</table>
+		
 	</div>
 
 	<script

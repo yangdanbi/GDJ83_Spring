@@ -15,9 +15,9 @@
 <body>
 <h2>employees list</h2>
 	<div class="row col-md-8">
-		<table class="table">
-			<thead class="table-dark">
-				<tr>
+		<table class="table table-success table-striped" style="text-align: center;">
+			<thead >
+				<tr >
 					<th>EMPLOYEE_ID</th>
 					<th>FIRST_NAME</th>
 					<th>LAST_NAME</th>
