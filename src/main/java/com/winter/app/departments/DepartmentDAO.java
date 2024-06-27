@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -156,6 +158,40 @@ public class DepartmentDAO {
 
 		return result;
 
+	}
+
+	// 부서별 정보 조회
+	public List<Map<String, Object>> getInfo() throws Exception {
+		Connection con = dbConnection.getConnection();
+
+		String sql = "SELECT DEPARTMENT_ID,SUM(SALARY),AVG(SALARY) FROM EMPLOYEES  " + "GROUP BY DEPARTMENT_ID";
+
+		// 쿼리 미리 전송
+		PreparedStatement st = con.prepareStatement(sql);
+
+		ResultSet rs = st.executeQuery();
+
+		// list 에 map을 담아야함
+		List<Map<String, Object>> ar = new ArrayList<Map<String, Object>>();
+
+		// 여러개니까
+		while (rs.next()) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			int id = rs.getInt("DEPARTMENT_ID");
+			int sum = rs.getInt(2);
+			double avg = rs.getDouble(3);
+			map.put("id", id);
+			map.put("sum", sum);
+			map.put("avg", avg);
+
+			ar.add(map);
+		}
+
+		rs.close();
+		st.close();
+		con.close();
+
+		return ar;
 	}
 
 }

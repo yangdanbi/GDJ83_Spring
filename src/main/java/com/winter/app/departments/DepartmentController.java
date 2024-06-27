@@ -1,6 +1,7 @@
 package com.winter.app.departments;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,9 @@ public class DepartmentController {
 
 		model.addAttribute("list", ar); // list라는 속성으로 ar을 담아줌
 		// return ar;
+		List<Map<String, Object>> list = departmentService.getInfo();
+		model.addAttribute("info", list);
+
 	}
 
 	@RequestMapping("detail") // 파라미터 이름에 num으로 넘어오면 (일치하지않는다면) department_id로 넣어줘라

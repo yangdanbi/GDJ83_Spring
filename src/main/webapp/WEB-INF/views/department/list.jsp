@@ -17,6 +17,13 @@
 </head>
 <body>
 	<h2>department list</h2>
+	<div class="row">
+		<c:forEach items="${info}" var="m">
+			<h3>${m.id}</h3>
+			<h3>${m.sum}</h3>
+			<h3>${m.avg}</h3>
+				</c:forEach>
+	</div>
 	<div class="row col-md-8" >
 	<div>
 			<a href="./add" class ="btn btn-outline-warning" style="  margin: 10px; text-align: center; ">부서등록</a>
