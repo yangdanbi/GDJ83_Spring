@@ -39,4 +39,26 @@ public class ProductController {
 
 	}
 
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public void add() {
+
+	}
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add(ProductDTO productDTO, Model model) throws Exception {
+		System.out.println("ProductController add()");
+		int result = productService.add(productDTO);
+
+		System.out.println(productDTO.getProduct_id());
+		String url = "";
+		if (result > 0) {
+			url = "redirect:./list";
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "부서등록에 실패했습니다.");
+			model.addAttribute("url", "./list");
+		}
+		return url;
+	}
+
 }

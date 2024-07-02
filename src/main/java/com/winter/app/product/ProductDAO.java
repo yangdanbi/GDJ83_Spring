@@ -75,4 +75,25 @@ public class ProductDAO {
 
 	}
 
+	public int add(ProductDTO productDTO) throws Exception {
+		System.out.println("productDAO add()");
+		Connection con = dbConnection.getConnection();
+		String sql = "INSERT INTO PRODUCT(PRODUCT_ID,PRODUCT_TYPE,PRODUCT_RATE,PRODUCT_DETAIL) "
+				+ "VALUES(PRODUCT_SEQ.NEXTVAL,?,?,?)";
+
+		PreparedStatement st = con.prepareStatement(sql);
+		// ? 값 처리해주기
+		st.setString(1, productDTO.getProduct_type());// 꺼내기
+		st.setDouble(2, productDTO.getProduct_rate());// 꺼내기
+		st.setString(3, productDTO.getProduct_detail());// 꺼내기
+
+		int result = st.executeUpdate(); // result 가 0보다 크면 성공
+
+		// 6. 자원해제
+		st.close();
+		con.close();
+
+		return result;
+	}
+
 }
