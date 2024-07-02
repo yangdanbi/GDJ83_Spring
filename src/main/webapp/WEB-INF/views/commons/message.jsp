@@ -10,7 +10,7 @@
 	<script type="text/javascript">
 		alert('${result}');
 		/*alert(location.href);  */
-		location.href='${url}'
+		location.href='${url}';
 	</script>
 </body>
 </html>
