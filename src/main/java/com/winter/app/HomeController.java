@@ -1,7 +1,5 @@
 package com.winter.app;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -30,8 +28,9 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
-		robot.getRa().info();
-		robot.getLa().info();
+		/*
+		 * robot.getRa().info(); robot.getLa().info();
+		 */
 		// 객체 생성
 		// 생성자 이름은 클래스 이름과 동일 Robot()
 //		Robot robot = new Robot();
@@ -39,14 +38,18 @@ public class HomeController {
 //		robot.setRightArm(rightArm);// 의존성 주입 로봇에다가 rightArm을 넣기
 		// DI 를 개발자가 아니라 spring container 위임 - IOC
 
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
+		/*
+		 * logger.info("Welcome home! The client locale is {}.", locale);
+		 * 
+		 * Date date = new Date(); DateFormat dateFormat =
+		 * DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		 * 
+		 * String formattedDate = dateFormat.format(date);
+		 * 
+		 * model.addAttribute("serverTime", formattedDate);
+		 */
+		robot.getLeftArm().info();
+		robot.getRightArm().info();
 
 		return "index";
 	}

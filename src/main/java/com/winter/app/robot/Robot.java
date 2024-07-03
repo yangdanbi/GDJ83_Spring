@@ -1,35 +1,50 @@
 package com.winter.app.robot;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
 //객체생성 @controller, @Service @Repository @Component
-@Component // new Robot
+//@Component // new Robot
 public class Robot {
 	// 로봇은 오른쪽팔을 가지고 있다.
 
 	// 팔을 담겠다 선언
-	@Autowired // robot.setRightArm(rightArm); 주입해달라
-	@Qualifier("ra")
+	// @Autowired // robot.setRightArm(rightArm); 주입해달라
+	// @Qualifier("ra")
 	private Arm rightArm;// bean 의 이름은 class명의 첫글자를 소문자로 바꾼것
-	@Autowired
-	private Arm la;
+	// @Autowired
+	private Arm leftArm;
 
-	public Arm getRa() {
+	private int age;
+	private String company;
+
+	public Arm getRightArm() {
 		return rightArm;
 	}
 
-	public void setRa(Arm ra) {
-		this.rightArm = ra;
+	public void setRightArm(Arm rightArm) {
+		this.rightArm = rightArm;
 	}
 
-	public Arm getLa() {
-		return la;
+	public Arm getLeftArm() {
+		return leftArm;
 	}
 
-	public void setLa(Arm la) {
-		this.la = la;
+	public void setLeftArm(Arm leftArm) {
+		this.leftArm = leftArm;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 }
