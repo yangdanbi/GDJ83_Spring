@@ -42,6 +42,9 @@
 
 				<button type="submit" class="btn btn-secondary">상품 삭제</button>
 			</form>
+
+				<a href="./update?product_id=${dto.product_id}"
+					class="btn btn-secondary">상품수정</a>
 		</div>
 	</div>
 </body>

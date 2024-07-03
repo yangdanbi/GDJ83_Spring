@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--mybatis가 이 파일에 있는 쿼리문을 읽어감  -->
+<!--mybatis가 이 파일에 있는 쿼리문을 읽어감 -->
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
-  <mapper namespace="com.winter.app.product.ProductDAO">
-  <!-- 쿼리 뒤에 ;찍지않음 -->
-  	<select id="getList" resultType="com.winter.app.product.ProductDTO">
-  		SELECT * FROM PRODUCT ORDER BY PRODUCT_ID ASC
-  	</select>
-  	
-  	<select id="getDetail" resultType="com.winter.app.product.ProductDTO" parameterType="com.winter.app.product.ProductDTO">
-  		SELECT * FROM PRODUCT WHERE PRODUCT_ID = #{product_id}
-  	</select>
-  	
-  	<!-- resultType은 없지만 int가 리턴 -->
-  	<select id="add" parameterType="com.winter.app.product.ProductDTO">
-  		INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL,#{product_type},#{product_rate},#{product_detail})
-   	</select>
-   	
-   	<select id="delete" parameterType="com.winter.app.product.ProductDTO">
-  		DELETE PRODUCT WHERE PRODUCT_ID = #{product_id}
-   	</select>
-  	  	
-  </mapper>
+
+
+<mapper namespace="com.winter.app.product.ProductDAO">
+	<!-- 쿼리 뒤에 ;찍지않음 -->
+	<select id="getList"
+		resultType="com.winter.app.product.ProductDTO">
+		SELECT * FROM PRODUCT ORDER BY PRODUCT_ID ASC
+	</select>
+
+	<select id="getDetail"
+		resultType="com.winter.app.product.ProductDTO"
+		parameterType="com.winter.app.product.ProductDTO">
+		SELECT * FROM PRODUCT WHERE PRODUCT_ID = #{product_id}
+	</select>
+
+	<!-- resultType은 없지만 int가 리턴 -->
+	<select id="add"
+		parameterType="com.winter.app.product.ProductDTO">
+		INSERT INTO PRODUCT
+		VALUES(PRODUCT_SEQ.NEXTVAL,#{product_type},#{product_rate},#{product_detail})
+	</select>
+
+	<select id="delete"
+		parameterType="com.winter.app.product.ProductDTO">
+		DELETE PRODUCT WHERE PRODUCT_ID = #{product_id}
+	</select>
+
+	<select id="update"
+		parameterType="com.winter.app.product.ProductDTO">
+
+		UPDATE PRODUCT SET PRODUCT_ID = #{product_id},PRODUCT_TYPE = #{product_type},PRODUCT_RATE = #{product_rate},
+		PRODUCT_DETAIL = #{product_detail} WHERE PRODUCT_ID = #{product_id}
+	</select>
+
+</mapper>

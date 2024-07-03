@@ -24,7 +24,7 @@ public class ProductController {
 
 	// detail.jsp로 보냄
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public void getDetail(Model model, int product_id, ProductDTO productDTO) throws Exception {
+	public void getDetail(Model model, ProductDTO productDTO) throws Exception {
 		System.out.println("ProductController detail()");
 		productDTO = productService.getDetail(productDTO);
 		String url = "";
@@ -74,6 +74,32 @@ public class ProductController {
 			url = "commons/message";
 		}
 		return url;
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(Model model, ProductDTO productDTO) throws Exception {
+		System.out.println("ProductController update()");
+		productDTO = productService.getDetail(productDTO);
+		String url = "";
+		if (productDTO != null) {
+			model.addAttribute("dto", productDTO);
+			url = "product/update";
+		} else {
+			model.addAttribute("result", "없는 상품입니다.");
+			model.addAttribute("url", "./list");
+			url = "commons/message";
+		}
+		return url;
+
+	}
+
+	// 오버로딩
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(ProductDTO productDTO) throws Exception {
+		int result = productService.update(productDTO);
+
+		return "redirect:list";
 
 	}
 

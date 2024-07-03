@@ -28,4 +28,8 @@ public class ProductService {
 		return productDAO.delete(productDTO);
 	}
 
+	public int update(ProductDTO productDTO) throws Exception {
+		return productDAO.update(productDTO);
+	}
+
 }
