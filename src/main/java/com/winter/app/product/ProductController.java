@@ -24,9 +24,9 @@ public class ProductController {
 
 	// detail.jsp로 보냄
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public void detail(Model model, int product_id) throws Exception {
+	public void getDetail(Model model, int product_id, ProductDTO productDTO) throws Exception {
 		System.out.println("ProductController detail()");
-		ProductDTO productDTO = productService.detail(product_id);
+		productDTO = productService.getDetail(productDTO);
 		String url = "";
 		if (productDTO != null) {
 			model.addAttribute("dto", productDTO);
@@ -49,7 +49,6 @@ public class ProductController {
 		System.out.println("ProductController add()");
 		int result = productService.add(productDTO);
 
-		System.out.println(productDTO.getProduct_id());
 		String url = "";
 		if (result > 0) {
 			url = "redirect:./list";
@@ -59,6 +58,23 @@ public class ProductController {
 			model.addAttribute("url", "./list");
 		}
 		return url;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public String delete(ProductDTO productDTO, Model model) throws Exception {
+
+		int result = productService.delete(productDTO);
+		String url = "";
+		if (result > 0) {
+
+			url = "redirect:./list";
+		} else {
+			model.addAttribute("result", "삭제에 실패했습니다.");
+			model.addAttribute("url", "./list");
+			url = "commons/message";
+		}
+		return url;
+
 	}
 
 }
