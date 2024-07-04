@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.winter.app.member.MemberDAO">
+
+
+<!-- resultType은 없지만 int가 리턴 -->
+	<select id="join" parameterType="MemberDTO">
+		INSERT INTO MEMBER 
+		VALUES(MEMBER_SEQ.NEXTVAL,#{member_name},#{member_number},
+		#{phone},#{email},#{member_id},#{member_pwd})
+	</select>
+	
+	
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_ID =#{member_id}
+	</select>
+
+</mapper>

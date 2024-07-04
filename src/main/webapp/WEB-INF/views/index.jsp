@@ -15,6 +15,11 @@
 	
 <div class="container-fluid mt-5">
 	<div class="row justify-content-center">
+	<c:if test="${not empty member}"> <!-- 서버를 껐다키지 않는 이상 창을 닫아도 로그인 유지  -->
+	<div>
+		<h5 style="text-align: center; margin-bottom: 30px;">${member.member_name}님 환영합니다!</h5>
+	</div>
+	</c:if>
 		<div id="carouselExampleAutoplaying" class="carousel slide col-md-5" data-bs-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">

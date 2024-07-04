@@ -10,11 +10,11 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-	<h2>product add</h2>
-	<div class="container">
-		<div class="row">
+	<h2 style="text-align: center; margin-top: 30px">product add</h2>
+	<div class="container justify-content-center" style="width: 50%">
+		<div class="row ">
 
-			<form action="./add" method="post">
+			<form action="./add" method="post" >
 				<div class="mb-3">
 					<label for="product_type" class="form-label">상품종류</label> 
 					<input type="text" class="form-control" id="product_type" name="product_type">
@@ -27,8 +27,12 @@
 					<label for="product_detail" class="form-label">상품설명</label> 
 					<input type="text" class="form-control" id="product_detail" name="product_detail">
 				</div>
+						
+						
+				<div class="d-grid gap-2 d-md-flex justify-content-end">
+					<button type="submit" class="btn btn-secondary">등록</button>
+				</div>
 							
-				<button type="submit" class="btn btn-primary">등록</button>
 			</form>
 		</div>
 	</div>
