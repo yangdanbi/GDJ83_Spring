@@ -1,5 +1,7 @@
 package com.winter.app;
 
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -38,6 +40,12 @@ public class HomeController {
 //		Cookie cookie = new Cookie("test", "YDB");
 //		cookie.setMaxAge(60);
 //		response.addCookie(cookie);
+
+		// 1
+		Calendar ca = Calendar.getInstance();
+
+		long l = ca.getTimeInMillis();
+		String s = String.valueOf(1);
 
 		return "index";
 	}

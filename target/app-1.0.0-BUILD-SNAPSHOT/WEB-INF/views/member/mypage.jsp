@@ -41,11 +41,11 @@
 			
 		</div>
 		<div class="d-grid gap-2 d-md-flex justify-content-end"	style="margin-top: 30px; width: 80%;">
-			<button type="button" onclick="location.href='./update?member_id=${member.member_id}'" 
+			<button type="button" onclick="location.href='./update?m_id=${member.m_id}'" 
 				class="btn btn-secondary me-md-2" style="width: 90px;">회원수정</button>
 	
 		
-			<form action="./delete?member_id=${member.member_id}" method="post">
+			<form action="./delete?m_id=${member.m_id}" method="post">
 					<button type="submit" class="btn btn-danger  ">회원탈퇴</button>
 			</form>
 		</div>

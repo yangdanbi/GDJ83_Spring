@@ -1,21 +1,13 @@
 package com.winter.app.member;
 
 public class MemberDTO {
-	private int m_id;
+
 	private String member_name;
 	private String member_number;
 	private String phone;
 	private String email;
 	private String member_id;
 	private String member_pwd;
-
-	public int getM_id() {
-		return m_id;
-	}
-
-	public void setM_id(int m_id) {
-		this.m_id = m_id;
-	}
 
 	public String getMember_name() {
 		return member_name;

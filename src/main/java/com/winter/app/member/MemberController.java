@@ -104,21 +104,22 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public String mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
-		String url = "";
-		if (session.getAttribute("member") == null) {
-			url = "commons/message";
-			model.addAttribute("result", "로그인 후 이용가능합니다.");
-			model.addAttribute("url", "/member/login");
-		} else {
-			url = "/member/mypage";
-
-		}
-		memberDTO = (MemberDTO) session.getAttribute("member");
-		memberDTO = memberService.login(memberDTO);
-		model.addAttribute("member", memberDTO);
-
-		return url;
+	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
+//		String url = "";
+//		memberDTO = (MemberDTO) session.getAttribute("member");
+//		memberDTO = memberService.login(memberDTO);
+//		model.addAttribute("member", memberDTO);
+//
+//		if (session.getAttribute("member") == null) {
+//			url = "commons/message";
+//			model.addAttribute("result", "로그인 후 이용가능합니다.");
+//			model.addAttribute("url", "/member/login");
+//		} else {
+//			url = "/member/mypage";
+//
+//		}
+//
+//		return url;
 
 	}
 
@@ -133,7 +134,7 @@ public class MemberController {
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String update(MemberDTO memberDTO, HttpSession session, Model model) throws Exception { // dto에 정보가 저장
 		MemberDTO user = (MemberDTO) session.getAttribute("member");
-		memberDTO.setM_id(user.getM_id());
+		memberDTO.setMember_id(user.getMember_id());
 		int result = memberService.update(memberDTO);
 		String url = "";
 		if (result > 0) {
