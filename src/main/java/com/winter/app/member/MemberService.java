@@ -25,4 +25,16 @@ public class MemberService {
 		return result;
 	}
 
+	public MemberDTO myPage(MemberDTO memberDTO) {
+		return memberDAO.myPage(memberDTO);
+	}
+
+	public int update(MemberDTO memberDTO) {
+		return memberDAO.update(memberDTO);
+	}
+
+	public int delete(MemberDTO memberDTO) {
+		return memberDAO.delete(memberDTO);
+	}
+
 }

@@ -15,7 +15,7 @@
 		<c:choose>
 			<c:when test="${not empty member}">
 				<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="/member/join">마이페이지</a>
+				<a class="nav-link active" aria-current="page" href="/member/mypage">마이페이지</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="/member/logout">로그아웃</a>

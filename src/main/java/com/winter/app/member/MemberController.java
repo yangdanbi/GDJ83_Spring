@@ -89,9 +89,87 @@ public class MemberController {
 
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
-		session.invalidate(); // session의 유지시간을 0으로 설정
+		// session의 유지시간을 0으로 설정하는법
+		// 1
+		session.invalidate();
+		// 2
+		// session.setAttribute("member", null);
+		// 3
+		// session.removeAttribute("member");
+		// 4 (권장x)
+		// session.removeValue("member");
 
 		return "redirect:/";
 
 	}
+
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public String mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
+		String url = "";
+		if (session.getAttribute("member") == null) {
+			url = "commons/message";
+			model.addAttribute("result", "로그인 후 이용가능합니다.");
+			model.addAttribute("url", "/member/login");
+		} else {
+			url = "/member/mypage";
+
+		}
+		memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = memberService.login(memberDTO);
+		model.addAttribute("member", memberDTO);
+
+		return url;
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public void update(Model model, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = memberService.login(memberDTO);
+		model.addAttribute("member", memberDTO);
+
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(MemberDTO memberDTO, HttpSession session, Model model) throws Exception { // dto에 정보가 저장
+		MemberDTO user = (MemberDTO) session.getAttribute("member");
+		memberDTO.setM_id(user.getM_id());
+		int result = memberService.update(memberDTO);
+		String url = "";
+		if (result > 0) {
+			url = "commons/message";
+			model.addAttribute("result", "수정이 완료되었습니다.");
+			model.addAttribute("url", "/member/mypage");
+		}
+
+		return url;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public String delete(Model model, HttpSession session) {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		int result = memberService.delete(memberDTO);
+		String url = "";
+		if (result > 0) {
+			session.invalidate(); // 세션에 담겨있는 dto값을 지워주면 로그아웃 된 페이지로 넘어가게 됨
+
+			url = "commons/message";
+			model.addAttribute("result", "탈퇴가 완료됐습니다.");
+			model.addAttribute("url", "/");
+			// url = "redirect:./";
+			// url = "redirect:./";
+		}
+		return url;
+
+	}
+
+//	@RequestMapping(value = "test", method = RequestMethod.GET)
+//	public void test(int n) {
+//		String str = null;
+//		// 참조변수에 null이 들어가서 에러발생
+//		// 변수에 null을 넣는건 괜찮지만 null이 들어간 변수를 사용할때 에러가 남
+//		System.out.println(str.toString());// nullPoint 에러 str이 null
+//
+//	}
+
 }
