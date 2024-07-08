@@ -1,5 +1,9 @@
 package com.winter.app.member;
 
+import java.util.List;
+
+import com.winter.app.account.AccountDTO;
+
 public class MemberDTO {
 
 	private String member_name;
@@ -8,6 +12,7 @@ public class MemberDTO {
 	private String email;
 	private String member_id;
 	private String member_pwd;
+	private List<AccountDTO> accountDTO;
 
 	public String getMember_name() {
 		return member_name;

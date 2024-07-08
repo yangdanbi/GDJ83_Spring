@@ -45,7 +45,26 @@
 		<div>
 		<h2>계좌정보</h2>
 		<c:forEach items="${member.account}" var="ac">
-			<h3>${ac.account_number} : ${ac.balance}</h3>
+			<%-- <h3>${ac.account_number} : ${ac.balance}</h3> --%>
+				<table class="table"
+				style="text-align: center; margin-top: 30px; width: 60%;">
+				<thead>
+					<tr>
+						<th scope="col">가입일</th>
+						<th scope="col">계좌번호</th>
+						<th scope="col">잔액</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tbody>
+					<tr>
+						<td>${ac.join_date}</td>
+						<td>${ac.account_number}</td>
+						<td>${ac.balance}</td>
+					</tr>
+				</tbody>
+				</tbody>
+			</table>
 		</c:forEach>
 		</div>
 		

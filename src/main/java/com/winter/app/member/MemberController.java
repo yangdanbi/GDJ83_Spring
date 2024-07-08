@@ -131,7 +131,7 @@ public class MemberController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(Model model, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		memberDTO = memberService.login(memberDTO);
+		memberDTO = memberService.login(map);
 		model.addAttribute("member", memberDTO);
 
 	}

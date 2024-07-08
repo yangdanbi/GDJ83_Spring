@@ -6,21 +6,21 @@
 
 <mapper namespace="com.winter.app.member.MemberDAO">
 
-
 <!-- resultType은 없지만 int가 리턴 -->
 	<select id="join" parameterType="MemberDTO">
 		INSERT INTO MEMBER 
 		VALUES(#{member_name},#{member_number},
 		#{phone},#{email},#{member_id},#{member_pwd})
 	</select>
-	
-	
-	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
-		SELECT *
-		FROM MEMBER
-		WHERE MEMBER_ID =#{member_id}
+		
+	<select id="login" parameterType="MemberDTO" resultType="java.util.Map" >
+		SELECT M.*,P.*
+		FROM MEMBER M
+			 LEFT JOIN
+			 PRODUCT_INFO P
+			 ON M.MEMBER_ID = P.MEMBER_ID
+		WHERE M.MEMBER_ID =#{member_id}
 	</select>
-
 
 	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
 		SELECT *
