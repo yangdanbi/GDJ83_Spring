@@ -38,7 +38,7 @@
 			</table>
 
 			<div class="d-grid gap-2 d-md-flex justify-content-end"	style="margin-top: 30px; width: 65%;">
-				<button type="button" onclick="location.href='./acount?product_id=${dto.product_id}'" 
+				<button type="button" onclick="location.href='../account/add?product_id=${dto.product_id}'" 
 				class="btn btn-secondary me-md-2" style="width: 90px;">상품가입</button>
 				
 				

@@ -1,5 +1,7 @@
 package com.winter.app.member;
 
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.winter.app.account.AccountDTO;
 
 @Controller
 @RequestMapping("/member/*")
@@ -55,8 +59,8 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(MemberDTO memberDTO, Model model, String remember, HttpServletResponse response,
-			HttpSession session) throws Exception {
+	public String login(AccountDTO accountDTO, MemberDTO memberDTO, Model model, String remember,
+			HttpServletResponse response, HttpSession session) throws Exception {
 		System.out.println(remember);
 		String url = "";
 		if (remember != null) {
@@ -69,9 +73,10 @@ public class MemberController {
 			response.addCookie(cookie);
 
 		}
-		memberDTO = memberService.login(memberDTO);
-		if (memberDTO != null) {
-			session.setAttribute("member", memberDTO);
+		// memberDTO = memberService.login(memberDTO);
+		Map<String, Object> map = memberService.login(memberDTO);
+		if (map != null) {// map에 dto가 담겨있음
+			session.setAttribute("member", map);
 
 			url = "commons/message";
 			model.addAttribute("result", "로그인 성공했습니다.");
@@ -106,7 +111,7 @@ public class MemberController {
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
 //		String url = "";
-//		memberDTO = (MemberDTO) session.getAttribute("member");
+		// memberDTO = (MemberDTO) session.getAttribute("member");
 //		memberDTO = memberService.login(memberDTO);
 //		model.addAttribute("member", memberDTO);
 //

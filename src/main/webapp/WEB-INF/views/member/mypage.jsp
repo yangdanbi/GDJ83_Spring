@@ -29,17 +29,27 @@
 				<tbody>
 				<tbody>
 					<tr>
-						<td>${member.member_id}</td>
-						<td>${member.member_name}</td>
-						<td>${member.phone}</td>
-						<td>${member.email}</td>			
+						<td>${member.member.member_id}</td>
+						<td>${member.member.member_name}</td>
+						<td>${member.member.phone}</td>
+						<td>${member.member.email}</td>			
 					</tr>
 				</tbody>
 				</tbody>
 			</table>
+			
+			
 			<%-- </c:if>  --%>
 			
 		</div>
+		<div>
+		<h2>계좌정보</h2>
+		<c:forEach items="${member.account}" var="ac">
+			<h3>${ac.account_number} : ${ac.balance}</h3>
+		</c:forEach>
+		</div>
+		
+		
 		<div class="d-grid gap-2 d-md-flex justify-content-end"	style="margin-top: 30px; width: 80%;">
 			<button type="button" onclick="location.href='./update?member_id=${member.member_id}'" 
 				class="btn btn-secondary me-md-2" style="width: 90px;">회원수정</button>
