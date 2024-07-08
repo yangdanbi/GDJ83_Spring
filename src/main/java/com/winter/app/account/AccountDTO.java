@@ -1,8 +1,10 @@
 package com.winter.app.account;
 
+import java.sql.Date;
+
 public class AccountDTO {
 	private int product_id;
-	private int join_date;
+	private Date join_date;
 	private String account_number;
 	private String member_id;
 	private int balance;
@@ -15,11 +17,11 @@ public class AccountDTO {
 		this.product_id = product_id;
 	}
 
-	public int getJoin_date() {
+	public Date getJoin_date() {
 		return join_date;
 	}
 
-	public void setJoin_date(int join_date) {
+	public void setJoin_date(Date join_date) {
 		this.join_date = join_date;
 	}
 

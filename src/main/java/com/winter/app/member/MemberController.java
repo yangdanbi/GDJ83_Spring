@@ -1,7 +1,5 @@
 package com.winter.app.member;
 
-import java.util.Map;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -74,9 +72,9 @@ public class MemberController {
 
 		}
 		// memberDTO = memberService.login(memberDTO);
-		Map<String, Object> map = memberService.login(memberDTO);
-		if (map != null) {// map에 dto가 담겨있음
-			session.setAttribute("member", map);
+		memberDTO = memberService.login(memberDTO);
+		if (memberDTO != null) {// map에 dto가 담겨있음
+			session.setAttribute("member", memberDTO);
 
 			url = "commons/message";
 			model.addAttribute("result", "로그인 성공했습니다.");
@@ -131,7 +129,7 @@ public class MemberController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(Model model, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		memberDTO = memberService.login(map);
+		memberDTO = memberService.login(memberDTO);
 		model.addAttribute("member", memberDTO);
 
 	}

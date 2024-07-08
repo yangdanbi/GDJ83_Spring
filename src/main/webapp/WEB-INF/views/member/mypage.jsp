@@ -29,10 +29,10 @@
 				<tbody>
 				<tbody>
 					<tr>
-						<td>${member.member.member_id}</td>
-						<td>${member.member.member_name}</td>
-						<td>${member.member.phone}</td>
-						<td>${member.member.email}</td>			
+						<td>${member.member_id}</td>
+						<td>${member.member_name}</td>
+						<td>${member.phone}</td>
+						<td>${member.email}</td>			
 					</tr>
 				</tbody>
 				</tbody>
@@ -44,7 +44,7 @@
 		</div>
 		<div>
 		<h2>계좌정보</h2>
-		<c:forEach items="${member.account}" var="ac">
+		<c:forEach items="${member.dtos}" var="ac">
 			<%-- <h3>${ac.account_number} : ${ac.balance}</h3> --%>
 				<table class="table"
 				style="text-align: center; margin-top: 30px; width: 60%;">

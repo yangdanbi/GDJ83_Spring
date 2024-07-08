@@ -13,7 +13,7 @@
 		#{phone},#{email},#{member_id},#{member_pwd})
 	</select>
 		
-	<select id="login" parameterType="MemberDTO" resultType="java.util.Map" >
+	<select id="login" parameterType="MemberDTO" resultMap="loginResult" >
 		SELECT M.*,P.*
 		FROM MEMBER M
 			 LEFT JOIN
@@ -21,6 +21,28 @@
 			 ON M.MEMBER_ID = P.MEMBER_ID
 		WHERE M.MEMBER_ID =#{member_id}
 	</select>
+	<resultMap type="MemberDTO" id="loginResult">
+		<!--primary Key 용도-->
+		<!-- column="컬럼명" property="setter의 이름"-->
+		<!--member  -->
+		<id column="MEMBER_ID" property="member_id"/>
+		<result column="MEMBER_PWD" property="member_pwd"/> 
+		<result column="MEMBER_NAME" property="member_name"/> 
+		<result column="MEMBER_NUMBER" property="member_number"/> 
+		<result column="PHONE" property="phone"/> 
+		<result column="EMAIL" property="email"/> 
+		<!-- 1:N  -->
+		<!--통장 product_info  -->
+		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
+			<id column="PRODUCT_ID" property="product_id"/>
+			<result column="JOIN_DATE" property="join_date"/>
+			<result column="ACCOUNT_NUMBER" property="account_number"/>
+			<result column="BALANCE" property="balance"/>
+		</collection>
+		<!-- <result column="ACCOUNT_NUMBER" property="dtos"/> --> 
+	
+	
+	</resultMap>
 
 	<select id="mypage" parameterType="MemberDTO" resultType="MemberDTO">
 		SELECT *

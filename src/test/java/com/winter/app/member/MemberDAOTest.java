@@ -2,9 +2,6 @@ package com.winter.app.member;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.util.List;
-import java.util.Map;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,9 +19,9 @@ public class MemberDAOTest extends DefaultTest {
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setMember_id("ydb");
 
-		List<Map<String, Object>> ar = memberDAO.login(memberDTO);
+		memberDTO = memberDAO.login(memberDTO);
 
-		assertNotNull(ar);
+		assertNotNull(memberDTO);
 
 	}
 

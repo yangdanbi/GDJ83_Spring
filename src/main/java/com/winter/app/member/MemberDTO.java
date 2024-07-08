@@ -12,7 +12,15 @@ public class MemberDTO {
 	private String email;
 	private String member_id;
 	private String member_pwd;
-	private List<AccountDTO> accountDTO;
+	private List<AccountDTO> dtos;
+
+	public List<AccountDTO> getDtos() {
+		return dtos;
+	}
+
+	public void setDtos(List<AccountDTO> dtos) {
+		this.dtos = dtos;
+	}
 
 	public String getMember_name() {
 		return member_name;
