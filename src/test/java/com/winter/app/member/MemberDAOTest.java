@@ -1,6 +1,6 @@
 package com.winter.app.member;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +19,9 @@ public class MemberDAOTest extends DefaultTest {
 		MemberDTO memberDTO = new MemberDTO();
 		memberDTO.setMember_id("ydb");
 
-		memberDTO = memberDAO.login(memberDTO);
+		memberDTO = memberDAO.detail(memberDTO);
 
-		assertNotNull(memberDTO);
+		assertEquals(1, memberDTO.getDtos().size());
 
 	}
 

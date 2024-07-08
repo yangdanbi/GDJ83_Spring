@@ -16,4 +16,8 @@ public class AccountService {
 		accountDTO.setAccount_number(calendar.getTimeInMillis() + " "); // 숫자를 문자로
 		return accountDAO.add(accountDTO);
 	}
+
+	public AccountDTO detail(AccountDTO accountDTO) throws Exception {
+		return accountDAO.detail(accountDTO);
+	}
 }

@@ -44,7 +44,7 @@
 		</div>
 		<div>
 		<h2>계좌정보</h2>
-		<c:forEach items="${member.dtos}" var="ac">
+		
 			<%-- <h3>${ac.account_number} : ${ac.balance}</h3> --%>
 				<table class="table"
 				style="text-align: center; margin-top: 30px; width: 60%;">
@@ -56,16 +56,16 @@
 					</tr>
 				</thead>
 				<tbody>
-				<tbody>
+				<c:forEach items="${member.dtos}" var="ac">
 					<tr>
 						<td>${ac.join_date}</td>
-						<td>${ac.account_number}</td>
+						<td><a href="../account/detail?account_number=${ac.account_number}">${ac.account_number}</a></td>
 						<td>${ac.balance}</td>
 					</tr>
-				</tbody>
+				</c:forEach>
 				</tbody>
 			</table>
-		</c:forEach>
+	
 		</div>
 		
 		

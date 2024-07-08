@@ -9,14 +9,33 @@
   		INSERT INTO PRODUCT_INFO (PRODUCT_ID, JOIN_DATE, ACCOUNT_NUMBER, MEMBER_ID, BALANCE)
   		VALUES(#{product_id},SYSDATE, #{account_number}, #{member_id}, 0)
   	</insert>
-  	<select id="list" parameterType="MemberDTO" resultType="AccountDTO">
+  	
+  	<!-- <select id="list" parameterType="MemberDTO" resultType="AccountDTO">
   		SELECT ACCOUNT_NUMBER, BALANCE
   		FROM PRODUCT_INFO 
   		WHERE MEMBER_ID = #{member_id}
   	
+  	</select> -->
+  	<select id="detail"  parameterType="AccountDTO" resultMap="detailResult">
+  		SELECT *
+		FROM PRODUCT_INFO PI
+			JOIN PRODUCT P
+			ON PI.PRODUCT_ID  = P.PRODUCT_ID
+		WHERE PI.ACCOUNT_NUMBER = #{account_number}
   	</select>
-  
   	
-  	
+  	<resultMap type="AccountDTO" id="detailResult">
+  		<id column="ACCOUNT_NUMBER" property="account_number"/>
+  		<result column="PRODUCT_ID" property="product_id"/>
+  		<result column="JOIN_DATE" property="join_date"/>
+  		<result column="BALANCE" property="balance"/>
+  		<!--1:N의 관계  -->
+  		<!--  리턴타입 - productDTO-->
+  		<association property="productDTO" javaType="ProductDTO">
+  			<result column="PRODUCT_TYPE" property="product_type"/>
+  			<result column="PRODUCT_RATE" property="product_rate"/>
+  		</association>
+  		
+  	</resultMap>
 </mapper>
   

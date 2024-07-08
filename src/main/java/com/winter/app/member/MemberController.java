@@ -75,6 +75,7 @@ public class MemberController {
 		memberDTO = memberService.login(memberDTO);
 		if (memberDTO != null) {// map에 dto가 담겨있음
 			session.setAttribute("member", memberDTO);
+			session.setAttribute("account", accountDTO);
 
 			url = "commons/message";
 			model.addAttribute("result", "로그인 성공했습니다.");
@@ -107,11 +108,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public void mypage(MemberDTO memberDTO, Model model, HttpSession session) throws Exception {
+	public void mypage(Model model, HttpSession session) throws Exception {
 //		String url = "";
-		// memberDTO = (MemberDTO) session.getAttribute("member");
-//		memberDTO = memberService.login(memberDTO);
-//		model.addAttribute("member", memberDTO);
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO = memberService.detail(memberDTO);
+		model.addAttribute("member", memberDTO);
 //
 //		if (session.getAttribute("member") == null) {
 //			url = "commons/message";
@@ -129,7 +130,7 @@ public class MemberController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(Model model, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-		memberDTO = memberService.login(memberDTO);
+		memberDTO = memberService.detail(memberDTO);
 		model.addAttribute("member", memberDTO);
 
 	}

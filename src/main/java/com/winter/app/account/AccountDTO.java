@@ -2,12 +2,33 @@ package com.winter.app.account;
 
 import java.sql.Date;
 
+import com.winter.app.member.MemberDTO;
+import com.winter.app.product.ProductDTO;
+
 public class AccountDTO {
 	private int product_id;
 	private Date join_date;
 	private String account_number;
 	private String member_id;
 	private int balance;
+	private MemberDTO memberDTO;
+	private ProductDTO productDTO;
+
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
 
 	public int getProduct_id() {
 		return product_id;
