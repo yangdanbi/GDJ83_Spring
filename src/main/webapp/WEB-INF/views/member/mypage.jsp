@@ -10,14 +10,13 @@
 </head>
 <body>
 <c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-<h2 style="text-align: center;">mypage</h2>
+<h2 style="text-align: center; margin-top: 10px;">mypage</h2>
 
 <div class="container justify-content-center">
 		<div class="row justify-content-center">
 			<!-- <h1 style="text-align: center">product list</h1> -->
 <%-- 	<c:if test="${not empty member}"> --%>
-			<table class="table"
-				style="text-align: center; margin-top: 30px; width: 60%;">
+			<table class="table" style="text-align: center; margin-top: 30px; width: 60%;">
 				<thead>
 					<tr>
 						<th scope="col">아이디</th>
@@ -41,13 +40,12 @@
 			
 			<%-- </c:if>  --%>
 			
-		</div>
-		<div>
-		<h2>계좌정보</h2>
+
+	
+		<h5 style="text-align: center; margin-top: 10px;">가입계좌</h5>
 		
 			<%-- <h3>${ac.account_number} : ${ac.balance}</h3> --%>
-				<table class="table"
-				style="text-align: center; margin-top: 30px; width: 60%;">
+				<table class="table" style="text-align: center; margin-top: 10px; width: 60%;">
 				<thead>
 					<tr>
 						<th scope="col">가입일</th>
@@ -65,7 +63,7 @@
 				</c:forEach>
 				</tbody>
 			</table>
-	
+
 		</div>
 		
 		

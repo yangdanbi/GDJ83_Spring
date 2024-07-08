@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>product detail</title>
+<title>account detail</title>
 <c:import url="/WEB-INF/views/sample/bootHeader.jsp"></c:import>
 </head>
 <body>
@@ -19,16 +19,25 @@
 				<thead>
 					<tr>
 						<th scope="col">상품명</th>
-						<th scope="col">이자율</th>
+						<th scope="col">계좌번호</th>
 						<th scope="col">설명</th>
+						<th scope="col">가입일</th>
+						<th scope="col">잔액</th>
+							<th scope="col">이자율</th>
+					
 					</tr>
 				</thead>
 				<tbody>
 				<tbody>
 					<tr>
+						<td>${dto.productDTO.product_type}</td>
 						<td>${dto.account_number}</td>
+						<td>${dto.productDTO.product_detail}</td>
+						<td>${dto.join_date}</td>
 						<td>${dto.balance}</td>
-						<td>${dto.product_detail}</td>
+						<td>${dto.productDTO.product_rate}</td>
+						
+						
 
 					</tr>
 				</tbody>

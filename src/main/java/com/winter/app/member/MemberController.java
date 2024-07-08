@@ -20,12 +20,12 @@ public class MemberController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "join", method = RequestMethod.GET)
-	public void getlist() throws Exception {
+	public void join() throws Exception {
 
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String getlist(MemberDTO memberDTO, Model model) throws Exception {
+	public String join(MemberDTO memberDTO, Model model) throws Exception {
 		System.out.println("MemberController join()");
 		// System.out.println(memberDTO.getMember_name());
 
@@ -75,7 +75,7 @@ public class MemberController {
 		memberDTO = memberService.login(memberDTO);
 		if (memberDTO != null) {// map에 dto가 담겨있음
 			session.setAttribute("member", memberDTO);
-			session.setAttribute("account", accountDTO);
+			//session.setAttribute("account", accountDTO);
 
 			url = "commons/message";
 			model.addAttribute("result", "로그인 성공했습니다.");
@@ -176,5 +176,6 @@ public class MemberController {
 //		System.out.println(str.toString());// nullPoint 에러 str이 null
 //
 //	}
+	
 
 }

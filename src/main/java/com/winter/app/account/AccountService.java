@@ -13,7 +13,7 @@ public class AccountService {
 
 	public int add(AccountDTO accountDTO) throws Exception {
 		Calendar calendar = Calendar.getInstance();
-		accountDTO.setAccount_number(calendar.getTimeInMillis() + " "); // 숫자를 문자로
+		accountDTO.setAccount_number(calendar.getTimeInMillis()+""); // 숫자를 문자로
 		return accountDAO.add(accountDTO);
 	}
 

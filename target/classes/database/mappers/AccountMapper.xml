@@ -17,11 +17,18 @@
   	
   	</select> -->
   	<select id="detail"  parameterType="AccountDTO" resultMap="detailResult">
-  		SELECT *
-		FROM PRODUCT_INFO PI
-			JOIN PRODUCT P
+  		SELECT PI.PRODUCT_ID
+             , PI.JOIN_DATE
+             , PI.ACCOUNT_NUMBER
+             , PI.MEMBER_ID
+             , PI.BALANCE
+             , P.PRODUCT_TYPE
+             , P.PRODUCT_RATE
+             , P.PRODUCT_DETAIL
+		  FROM PRODUCT_INFO PI
+		  JOIN PRODUCT P
 			ON PI.PRODUCT_ID  = P.PRODUCT_ID
-		WHERE PI.ACCOUNT_NUMBER = #{account_number}
+		 WHERE PI.ACCOUNT_NUMBER = #{account_number}
   	</select>
   	
   	<resultMap type="AccountDTO" id="detailResult">
@@ -34,6 +41,7 @@
   		<association property="productDTO" javaType="ProductDTO">
   			<result column="PRODUCT_TYPE" property="product_type"/>
   			<result column="PRODUCT_RATE" property="product_rate"/>
+  			<result column="PRODUCT_DETAIL" property="product_detail"/>
   		</association>
   		
   	</resultMap>

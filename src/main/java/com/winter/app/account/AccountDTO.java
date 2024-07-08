@@ -70,4 +70,14 @@ public class AccountDTO {
 		this.balance = balance;
 	}
 
+	@Override
+	public String toString() {
+		return "AccountDTO [product_id=" + product_id + ", "
+				+ (join_date != null ? "join_date=" + join_date + ", " : "")
+				+ (account_number != null ? "account_number=" + account_number + ", " : "")
+				+ (member_id != null ? "member_id=" + member_id + ", " : "") + "balance=" + balance + ", "
+//				+ (memberDTO != null ? "memberDTO=" + memberDTO + ", " : "")
+//				+ (productDTO != null ? "productDTO=" + productDTO : "") + "]"
+				;
+	}
 }

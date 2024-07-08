@@ -29,9 +29,10 @@ public class AccountController {
 	public void detail(AccountDTO accountDTO, Model model) throws Exception {
 		AccountDTO accountDTO2 = new AccountDTO();
 		accountDTO2.setAccount_number(accountDTO.getAccount_number());
+
 		accountDTO2 = accountService.detail(accountDTO);
-		System.out.println(accountDTO.getAccount_number());
-		System.out.println(accountDTO.getBalance());
+		
+		
 
 		model.addAttribute("dto", accountDTO2);
 

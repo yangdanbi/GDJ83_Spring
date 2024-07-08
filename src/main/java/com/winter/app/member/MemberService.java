@@ -51,4 +51,5 @@ public class MemberService {
 		return memberDAO.detail(memberDTO);
 	}
 
+
 }
