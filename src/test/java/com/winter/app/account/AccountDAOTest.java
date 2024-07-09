@@ -1,6 +1,6 @@
 package com.winter.app.account;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,19 @@ public class AccountDAOTest extends DefaultTest {
 
 	@Test
 	public void detailTest() throws Exception {
-		AccountDTO accountDTO = new AccountDTO();
+//		AccountDTO accountDTO = new AccountDTO();
+//
+//		accountDTO.setAccount_number("7");
+//		accountDTO = accountDAO.detail(accountDTO);
+//
+//		assertNotNull(accountDTO);
+		HistoryDTO historyDTO = new HistoryDTO();
 
-		accountDTO.setAccount_number("7");
-		accountDTO = accountDAO.detail(accountDTO);
+		historyDTO.setAccount_number("7");
+		historyDTO.setAmount(5000);
 
-		assertNotNull(accountDTO);
+		int a = accountDAO.transfer(historyDTO);
+		assertEquals(1, a);
 
 	}
 

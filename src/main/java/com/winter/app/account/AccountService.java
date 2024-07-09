@@ -13,11 +13,24 @@ public class AccountService {
 
 	public int add(AccountDTO accountDTO) throws Exception {
 		Calendar calendar = Calendar.getInstance();
-		accountDTO.setAccount_number(calendar.getTimeInMillis()+""); // 숫자를 문자로
+		accountDTO.setAccount_number(calendar.getTimeInMillis() + ""); // 숫자를 문자로
 		return accountDAO.add(accountDTO);
 	}
 
 	public AccountDTO detail(AccountDTO accountDTO) throws Exception {
 		return accountDAO.detail(accountDTO);
+	}
+
+	public int transfer(HistoryDTO historyDTO) throws Exception {
+		int a = accountDAO.transfer(historyDTO);
+		int b = accountDAO.transfer_u(historyDTO);
+
+		int c = accountDAO.pro_up(historyDTO);
+		int d = accountDAO.pro_up_u(historyDTO);
+
+		int result = a + b + c + d;
+
+		return result;
+
 	}
 }

@@ -4,6 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.winter.app.account.AccountDAO">
+  
+  
 	
 	<insert id="add" parameterType="AccountDTO">
   		INSERT INTO PRODUCT_INFO (PRODUCT_ID, JOIN_DATE, ACCOUNT_NUMBER, MEMBER_ID, BALANCE)
@@ -45,5 +47,36 @@
   		</association>
   		
   	</resultMap>
+  	
+  	<!-- 계좌이체 보내는쪽 -->
+  	<insert id="transfer" parameterType="HistoryDTO" >
+		INSERT INTO HISTORY 
+		VALUES(HISTORY_SEQ.NEXTVAL,#{account_sender},SYSDATE,#{amount},
+				(SELECT BALANCE 
+				FROM PRODUCT_INFO
+				WHERE ACCOUNT_NUMBER = #{account_sender})-#{amount},'O')
+	</insert>
+	
+	  	<!-- 계좌이체 받는쪽 -->
+	 <insert id="transfer_u" parameterType="HistoryDTO" >
+		INSERT INTO HISTORY 
+		VALUES(HISTORY_SEQ.NEXTVAL,#{account_number},SYSDATE,#{amount},
+				(SELECT BALANCE 
+				FROM PRODUCT_INFO
+				WHERE ACCOUNT_NUMBER = #{account_number})+#{amount},'I')
+	</insert>
+	
+		<!-- 계좌이체 보내는쪽 -->
+	<update id="pro_up" parameterType="HistoryDTO" >
+		UPDATE PRODUCT_INFO 
+		SET BALANCE = BALANCE - #{amount}
+		WHERE ACCOUNT_NUMBER = #{account_sender}
+	</update>
+	
+		<!-- 계좌이체 받는쪽 -->
+	<update id="pro_up_u" parameterType="HistoryDTO" >
+		UPDATE PRODUCT_INFO 
+		SET BALANCE = BALANCE + #{amount}
+		WHERE ACCOUNT_NUMBER = #{account_number}
+	</update>
 </mapper>
-  

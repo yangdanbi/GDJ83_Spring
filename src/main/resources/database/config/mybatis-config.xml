@@ -11,6 +11,8 @@
   		
   		<typeAlias type="com.winter.app.account.AccountDTO" alias="AccountDTO"/>
   		
+  		<typeAlias type="com.winter.app.account.HistoryDTO" alias="HistoryDTO"/>
+  		
   </typeAliases>
   
   

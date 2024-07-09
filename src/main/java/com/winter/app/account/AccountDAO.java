@@ -22,5 +22,20 @@ public class AccountDAO {
 	 * public List<AccountDTO> list(MemberDTO memberDTO) throws Exception { return
 	 * sqlSession.selectList(NAMESPACE + "list", memberDTO); }
 	 */
+	public int transfer(HistoryDTO historyDTO) {
+		return sqlSession.insert(NAMESPACE + "transfer", historyDTO);
+	}
+
+	public int transfer_u(HistoryDTO historyDTO) {
+		return sqlSession.insert(NAMESPACE + "transfer_u", historyDTO);
+	}
+
+	public int pro_up(HistoryDTO historyDTO) {
+		return sqlSession.update(NAMESPACE + "pro_up", historyDTO);
+	}
+
+	public int pro_up_u(HistoryDTO historyDTO) {
+		return sqlSession.update(NAMESPACE + "pro_up_u", historyDTO);
+	}
 
 }

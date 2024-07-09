@@ -27,14 +27,35 @@ public class AccountController {
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public void detail(AccountDTO accountDTO, Model model) throws Exception {
-		AccountDTO accountDTO2 = new AccountDTO();
-		accountDTO2.setAccount_number(accountDTO.getAccount_number());
+		accountDTO = accountService.detail(accountDTO);
+		model.addAttribute("dto", accountDTO);
+	}
 
-		accountDTO2 = accountService.detail(accountDTO);
-		
-		
+	@RequestMapping(value = "transfer", method = RequestMethod.GET)
+	public void transfer(Model model, AccountDTO accountDTO) throws Exception {
+		accountDTO = accountService.detail(accountDTO);
+		model.addAttribute("dto", accountDTO);
 
-		model.addAttribute("dto", accountDTO2);
+	}
+
+	@RequestMapping(value = "transfer", method = RequestMethod.POST)
+	public String transfer(AccountDTO accountDTO, HistoryDTO historyDTO, Model model) throws Exception {
+		System.out.println("내가 이체할 금액 : " + historyDTO.getAmount());
+		System.out.println("이체할 계좌번호 : " + historyDTO.getAccount_number());
+		String url = "";
+		int result = accountService.transfer(historyDTO);
+		System.out.println(result);
+		if (result == 4) {
+			url = "commons/message";
+			model.addAttribute("result", "이체가 완료되었습니다.");
+			model.addAttribute("url", "/member/mypage");
+		} else {
+			url = "commons/message";
+			model.addAttribute("result", "계좌정보/잔액을 확인해주세요.");
+			model.addAttribute("url", "/member/mypage");
+		}
+		return url;
+		// "redirect:/";
 
 	}
 }
