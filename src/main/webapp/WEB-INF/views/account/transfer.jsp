@@ -17,13 +17,15 @@
 			
 			<form action="./transfer" method="post">
 				<div class="mb-3">
-					<label for="" class="form-label">나의 계좌</label> 
 					
-					<input	type="text" class="form-control" id="" name="account_sender" value="${requestScope.dto.account_number}" readonly="readonly">
-					<label for="" class="form-label">잔액</label> 
-					
-					<input	type="text" class="form-control" id="" name="" value="${requestScope.dto.balance}" readonly="readonly">
+					<input	type="hidden"name= "account_number" value="${param.account_number}" >
 				</div>
+				<div class="mb-3">
+					<label for="" class="form-label">현재 잔액</label> 
+					<h2>${requestScope.dto.balance}</h2>
+				</div>
+				<hr>
+				
 			
 				<div class="mb-3">
 					<label for="" class="form-label">이체금액</label> 
@@ -31,7 +33,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="" class="form-label">계좌번호</label> 
-					<input	type="text" class="form-control" id="" name="account_number">
+					<input	type="text" class="form-control" id="receive_number" name="receive_number">
 				</div>
 
 

@@ -5,6 +5,8 @@ import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.winter.app.history.HistoryDTO;
+
 @Service
 public class AccountService {
 
@@ -33,4 +35,5 @@ public class AccountService {
 		return result;
 
 	}
+
 }

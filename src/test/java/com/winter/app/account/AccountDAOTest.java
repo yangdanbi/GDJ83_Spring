@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.winter.app.DefaultTest;
+import com.winter.app.history.HistoryDTO;
 
 public class AccountDAOTest extends DefaultTest {
 

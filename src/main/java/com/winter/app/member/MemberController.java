@@ -75,7 +75,7 @@ public class MemberController {
 		memberDTO = memberService.login(memberDTO);
 		if (memberDTO != null) {// map에 dto가 담겨있음
 			session.setAttribute("member", memberDTO);
-			//session.setAttribute("account", accountDTO);
+			// session.setAttribute("account", accountDTO);
 
 			url = "commons/message";
 			model.addAttribute("result", "로그인 성공했습니다.");
@@ -176,6 +176,5 @@ public class MemberController {
 //		System.out.println(str.toString());// nullPoint 에러 str이 null
 //
 //	}
-	
 
 }

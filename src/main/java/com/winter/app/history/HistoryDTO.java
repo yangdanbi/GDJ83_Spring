@@ -1,14 +1,16 @@
-package com.winter.app.account;
+package com.winter.app.history;
 
 import java.sql.Date;
 
 public class HistoryDTO {
 	private int history_id;
+
 	// 받는 계좌번호 용
-	private String account_number;
+	private String receive_number;
 
 	// 보내는 계좌번호
-	private String account_sender;
+	private String account_number;
+
 	private Date history_time;
 	private int amount;
 	private int balance;
@@ -26,12 +28,12 @@ public class HistoryDTO {
 		return account_number;
 	}
 
-	public String getAccount_sender() {
-		return account_sender;
+	public String getReceive_number() {
+		return receive_number;
 	}
 
-	public void setAccount_sender(String account_sender) {
-		this.account_sender = account_sender;
+	public void setReceive_number(String receive_number) {
+		this.receive_number = receive_number;
 	}
 
 	public void setAccount_number(String account_number) {

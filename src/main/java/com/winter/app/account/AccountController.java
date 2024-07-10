@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.winter.app.history.HistoryDTO;
+import com.winter.app.history.HistoryService;
 import com.winter.app.member.MemberDTO;
 
 @Controller
@@ -15,6 +17,9 @@ import com.winter.app.member.MemberDTO;
 public class AccountController {
 	@Autowired
 	private AccountService accountService;
+
+	@Autowired
+	private HistoryService historyService;
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(AccountDTO accountDTO, HttpSession session) throws Exception {
@@ -31,31 +36,46 @@ public class AccountController {
 		model.addAttribute("dto", accountDTO);
 	}
 
+	@RequestMapping(value = "transfer", method = RequestMethod.POST)
+	public String transfer(HistoryDTO historyDTO) throws Exception {
+		int result = historyService.history(historyDTO);
+
+		return "redirect:../member/mypage";
+
+	}
+
 	@RequestMapping(value = "transfer", method = RequestMethod.GET)
-	public void transfer(Model model, AccountDTO accountDTO) throws Exception {
+	public void transfer(AccountDTO accountDTO, Model model) throws Exception {
 		accountDTO = accountService.detail(accountDTO);
 		model.addAttribute("dto", accountDTO);
 
 	}
 
-	@RequestMapping(value = "transfer", method = RequestMethod.POST)
-	public String transfer(AccountDTO accountDTO, HistoryDTO historyDTO, Model model) throws Exception {
-		System.out.println("내가 이체할 금액 : " + historyDTO.getAmount());
-		System.out.println("이체할 계좌번호 : " + historyDTO.getAccount_number());
-		String url = "";
-		int result = accountService.transfer(historyDTO);
-		System.out.println(result);
-		if (result == 4) {
-			url = "commons/message";
-			model.addAttribute("result", "이체가 완료되었습니다.");
-			model.addAttribute("url", "/member/mypage");
-		} else {
-			url = "commons/message";
-			model.addAttribute("result", "계좌정보/잔액을 확인해주세요.");
-			model.addAttribute("url", "/member/mypage");
-		}
-		return url;
-		// "redirect:/";
-
-	}
+//	@RequestMapping(value = "transfer", method = RequestMethod.GET)
+//	public void transfer(Model model, AccountDTO accountDTO) throws Exception {
+//		accountDTO = accountService.detail(accountDTO);
+//		model.addAttribute("dto", accountDTO);
+//
+//	}
+//
+//	@RequestMapping(value = "transfer", method = RequestMethod.POST)
+//	public String transfer(AccountDTO accountDTO, HistoryDTO historyDTO, Model model) throws Exception {
+//		System.out.println("내가 이체할 금액 : " + historyDTO.getAmount());
+//		System.out.println("이체할 계좌번호 : " + historyDTO.getAccount_number());
+//		String url = "";
+//		int result = accountService.transfer(historyDTO);
+//		System.out.println(result);
+//		if (result == 4) {
+//			url = "commons/message";
+//			model.addAttribute("result", "이체가 완료되었습니다.");
+//			model.addAttribute("url", "/member/mypage");
+//		} else {
+//			url = "commons/message";
+//			model.addAttribute("result", "계좌정보/잔액을 확인해주세요.");
+//			model.addAttribute("url", "/member/mypage");
+//		}
+//		return url;
+//		// "redirect:/";
+//
+//	}
 }
