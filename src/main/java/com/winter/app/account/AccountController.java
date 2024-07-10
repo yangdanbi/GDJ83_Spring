@@ -1,5 +1,7 @@
 package com.winter.app.account;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +57,12 @@ public class AccountController {
 			model.addAttribute("url", "/member/mypage");
 		}
 		return url;
-		// "redirect:/";
 
+	}
+
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public void list(Model model, HistoryDTO historyDTO, ListOption listOption) throws Exception {
+		List<HistoryDTO> ar = accountService.list(listOption);
+		model.addAttribute("list", ar);
 	}
 }

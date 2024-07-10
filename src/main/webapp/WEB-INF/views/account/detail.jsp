@@ -40,9 +40,14 @@
 				</tbody>
 				</tbody>
 			</table>
-				<div class="d-grid gap-2 d-md-flex justify-content-end" >
-			<a href="./transfer?account_number=${dto.account_number}" class="btn btn-secondary" style=" margin: 30px;  margin-right: 250px;">이체</a>
-
+				<div class="d-grid gap-2 d-md-flex justify-content-end" style="margin-top: 30px; width: 65%;">
+				
+				<button type="button" onclick="location.href='./transfer?account_number=${dto.account_number}'" 
+				class="btn btn-secondary me-md-2" style="width: 90px;">이체</button>
+				
+					<button type="button" onclick="location.href='./list?account_number=${dto.account_number}'" 
+				class="btn btn-secondary me-md-2" style="width: 90px;">이체내역</button>
+				
 		</div>
 		</div> 
 	</div>

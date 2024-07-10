@@ -13,6 +13,7 @@ public class AccountDTO {
 	private int balance;
 	private MemberDTO memberDTO;
 	private ProductDTO productDTO;
+	private int mode;
 
 	public MemberDTO getMemberDTO() {
 		return memberDTO;
@@ -78,6 +79,6 @@ public class AccountDTO {
 				+ (member_id != null ? "member_id=" + member_id + ", " : "") + "balance=" + balance + ", "
 //				+ (memberDTO != null ? "memberDTO=" + memberDTO + ", " : "")
 //				+ (productDTO != null ? "productDTO=" + productDTO : "") + "]"
-				;
+		;
 	}
 }

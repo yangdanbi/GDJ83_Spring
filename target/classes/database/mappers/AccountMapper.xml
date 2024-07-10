@@ -79,4 +79,31 @@
 		SET BALANCE = BALANCE + #{amount}
 		WHERE ACCOUNT_NUMBER = #{account_number}
 	</update>
+	
+	<select id="list" parameterType="ListOption" resultType="HistoryDTO">
+		SELECT 
+		HISTORY_TIME
+		, AMOUNT
+		, BALANCE
+		, TYPE 
+		FROM HISTORY 
+		WHERE ACCOUNT_NUMBER = #{account_number}
+		<choose>
+		 	<when test="order==2">
+		 		AND TYPE ='I'
+		 	</when>
+		 	<when test="order==3">
+		 		AND TYPE ='O'
+		 	</when>
+		</choose>
+			ORDER BY HISTORY_ID 
+		 <choose>
+             <when test="order==1">
+             	ASC
+             </when>
+             <otherwise>
+             	DESC
+             </otherwise>
+         </choose>   
+	</select>
 </mapper>
