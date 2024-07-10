@@ -89,10 +89,10 @@
 		FROM HISTORY 
 		WHERE ACCOUNT_NUMBER = #{account_number}
 		<choose>
-		 	<when test="order==2">
+		 	<when test="io=='I'">
 		 		AND TYPE ='I'
 		 	</when>
-		 	<when test="order==3">
+		 	<when test="io=='O'">
 		 		AND TYPE ='O'
 		 	</when>
 		</choose>
