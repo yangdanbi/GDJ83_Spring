@@ -29,7 +29,7 @@
 					<tr>
 						<th scope="col">거래일</th>
 						<th scope="col">입/출금액</th>
-						<th scope="col">입/출금(I:입금 O:출금)</th>
+						<th scope="col">거래구분</th>
 						<th scope="col">잔액</th>
 					</tr>
 				</thead>				
