@@ -7,11 +7,28 @@
 
 <mapper namespace="com.winter.app.product.ProductDAO">
 	<!-- 쿼리 뒤에 ;찍지않음 -->
-	<select id="getList" resultType="com.winter.app.product.ProductDTO">
-		SELECT * FROM PRODUCT ORDER BY PRODUCT_ID ASC
+	
+	<select id="getTotalCount" resultType="java.lang.Long" >
+	
+	SELECT COUNT(PRODUCT_ID) FROM PRODUCT
+	
+	</select>
+	
+	<select id="getList" resultType="ProductDTO" parameterType="java.util.List">
+		<!-- SELECT * FROM PRODUCT ORDER BY PRODUCT_ID ASC -->
+		<![CDATA[
+		SELECT *
+		FROM 
+			(SELECT ROWNUM R,B.* 
+			 FROM (SELECT * 
+			  	   FROM PRODUCT 
+			  	   ORDER BY PRODUCT_ID DESC)
+			 B)
+		WHERE R BETWEEN #{list[0]} AND #{list[1]}
+		]]>
 	</select>
 
-	<select id="getDetail" resultType="com.winter.app.product.ProductDTO" parameterType="ProductDTO">
+	<select id="getDetail" resultType="ProductDTO" parameterType="ProductDTO">
 		SELECT * FROM PRODUCT WHERE PRODUCT_ID = #{product_id}
 	</select>
 

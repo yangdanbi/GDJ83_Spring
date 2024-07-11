@@ -16,9 +16,9 @@
 		<div class="btn-group btn-group-sm" role="group" aria-label="Small button group" style="margin-top: 30px; text-align: center;">
 	 		<a href="list?account_number=${param.account_number}&order=0" class = "btn btn-outline-warning">최신순으로 </a>
 	 		<a href="list?account_number=${param.account_number}&order=1" class = "btn btn-outline-warning">과거순으로 </a>
-	 		<a href="list?account_number=${param.account_number}&io=I" class = "btn btn-outline-success">입금내역조회 </a>
-	 		<a href="list?account_number=${param.account_number}&io=O" class = "btn btn-outline-success"> 출금내역조회 </a>
-	 		<a href="list?account_number=${param.account_number}&order=0" class = "btn btn-outline-primary">모든내역조회 </a>
+	 		<a href="list?account_number=${param.account_number}&io=0" class = "btn btn-outline-success">입금내역조회 </a>
+	 		<a href="list?account_number=${param.account_number}&io=1" class = "btn btn-outline-success"> 출금내역조회 </a>
+	 		<a href="list?account_number=${param.account_number}" class = "btn btn-outline-primary">모든내역조회 </a>
 	 	</div>
 	 	</div>
 	<div class="container justify-content-center">

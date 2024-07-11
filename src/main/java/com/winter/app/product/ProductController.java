@@ -16,9 +16,10 @@ public class ProductController {
 	private ProductService productService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getlist(Model model) throws Exception {
+	public void getlist(Long page, Model model) throws Exception {
 		System.out.println("ProductController getList()");
-		List<ProductDTO> ar = productService.getList();
+		List<ProductDTO> ar = productService.getList(page);
+		System.out.println("page: " + page);
 		model.addAttribute("list", ar);
 	}
 

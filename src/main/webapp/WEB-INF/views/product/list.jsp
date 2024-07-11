@@ -39,6 +39,23 @@
 
 				</tbody>
 			</table>
+							<nav aria-label="Page navigation example" style="margin-top: 30px">
+						  <ul class="pagination justify-content-center">
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+						    <li class="page-item"><a class="page-link" href="./list?page=1">1</a></li>
+						    <li class="page-item"><a class="page-link" href="./list?page=2">2</a></li>
+						    <li class="page-item"><a class="page-link" href="./list?page=3">3</a></li>
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+						  </ul>
+						</nav>
 		<div class="d-grid gap-2 d-md-flex justify-content-end" >
 			<a href="./add" class="btn btn-secondary" style=" margin: 30px;  margin-right: 185px;">상품등록</a>
 

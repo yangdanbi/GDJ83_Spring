@@ -45,7 +45,7 @@
 				<button type="button" onclick="location.href='./transfer?account_number=${dto.account_number}'" 
 				class="btn btn-secondary me-md-2" style="width: 90px;">이체</button>
 				
-					<button type="button" onclick="location.href='./list?account_number=${dto.account_number}'" 
+					<button type="button" onclick="location.href='./list?account_number=${dto.account_number}&order=0'" 
 				class="btn btn-secondary me-md-2" style="width: 90px;">이체내역</button>
 				
 		</div>

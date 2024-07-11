@@ -13,8 +13,15 @@ public class ProductDAO {
 
 	private final String NAMESPACE = "com.winter.app.product.ProductDAO.";
 
-	public List<ProductDTO> getList() throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getList");
+	public List<ProductDTO> getList(List<Long> ar) throws Exception {
+
+		return sqlSession.selectList(NAMESPACE + "getList", ar);
+
+	}
+
+	public Long getTotalCount() throws Exception {
+
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount");
 
 	}
 
