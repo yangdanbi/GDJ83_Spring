@@ -17,13 +17,15 @@ public class ProductService {
 		// page가 1이면 2 3 4
 		// 첫번째 숫자 1 11 21 31
 		// 두번째 숫자 10 20 30 40
-		if (page == null) {
+		if (page == null) {// -페이지로 가지않도록
 			page = 1L;
 		}
 
 		if (page < 1) {
 			page = 1L;
 		}
+
+		// 1. 총 갯수로 총 페이지 수 구하기
 		long perPage = 10L;
 		System.out.println("test perPage " + perPage);
 		System.out.println("test page " + page);
@@ -44,15 +46,16 @@ public class ProductService {
 //		pager.setStratRow(page);
 //		
 //		pager.setLastRow(page);
-
+		// 2. 총 페이지 수로 총 블럭수 구하기
 		long totalCount = productDAO.getTotalCount();
 		long totalPage = totalCount / perPage;
 
+		// 나머지가 0이 아니면 페이지를 1증가해서 모든 데이터를 보여줌
 		if (totalCount % perPage != 0) {
 			// totalPage = totalCount / perPage + 1;
 			totalPage++;
 		}
-		//
+		// 3. 현재 페이지 번호로 현재 블럭 번호 구하기
 		long perBlock = 5L; // 한페이지에 보여질 페이번호의 갯수
 		long totalBlock = 0; // 총 블럭의 수
 
