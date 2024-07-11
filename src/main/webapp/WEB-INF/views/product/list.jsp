@@ -26,7 +26,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${list}" var="product">
+					<c:forEach items="${map.list}" var="product">
 						<tbody>
 							<tr>
 								<td>${product.product_id}</td>
@@ -46,11 +46,13 @@
 						        <span aria-hidden="true">&laquo;</span>
 						      </a>
 						    </li>
-						    <li class="page-item"><a class="page-link" href="./list?page=1">1</a></li>
-						    <li class="page-item"><a class="page-link" href="./list?page=2">2</a></li>
-						    <li class="page-item"><a class="page-link" href="./list?page=3">3</a></li>
+						    
+						    <c:forEach begin="${map.startNum}"  end ="${map.lastNum}" step="1" var="i"> 
+						    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+						    </c:forEach>
+						    
 						    <li class="page-item">
-						      <a class="page-link" href="#" aria-label="Next">
+						      <a class="page-link" href="./list?page=${map.lastNum+1}" aria-label="Next">
 						        <span aria-hidden="true">&raquo;</span>
 						      </a>
 						    </li>

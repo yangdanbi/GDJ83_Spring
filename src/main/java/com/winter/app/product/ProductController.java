@@ -1,6 +1,6 @@
 package com.winter.app.product;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +18,10 @@ public class ProductController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public void getlist(Long page, Model model) throws Exception {
 		System.out.println("ProductController getList()");
-		List<ProductDTO> ar = productService.getList(page);
+		// List<ProductDTO> ar = productService.getList(page);
+		Map<String, Object> map = productService.getList(page);
 		System.out.println("page: " + page);
-		model.addAttribute("list", ar);
+		model.addAttribute("map", map);
 	}
 
 	// detail.jsp로 보냄
