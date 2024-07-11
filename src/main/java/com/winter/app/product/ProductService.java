@@ -20,6 +20,10 @@ public class ProductService {
 		if (page == null) {
 			page = 1L;
 		}
+
+		if (page < 1) {
+			page = 1L;
+		}
 		long perPage = 10L;
 		System.out.println("test perPage " + perPage);
 		System.out.println("test page " + page);
@@ -54,7 +58,7 @@ public class ProductService {
 
 		totalBlock = totalPage / perBlock;
 		if (totalPage % perBlock != 0) {
-			totalPage++;
+			totalBlock++;
 		}
 		// 3. 현재 페이지 번호로 현재블럭 번호를 구하기
 		// page 1 2 3 4 5 6 10 11
@@ -78,11 +82,23 @@ public class ProductService {
 		// start 1 1 1 1 1 6 6 6
 		// last 5 5 5 5 5 10 10 10
 
+		// 5. 이전블럭, 다음 블럭 유무 판단
+		boolean pre = true; // true면 이전블럭이 존재, false면 이전블럭이 존재x
+		boolean next = true;
+		if (curBlock == 1) {
+			pre = false;
+		}
+		if (curBlock == totalBlock) {// 현재 블럭이 마지막 블럭이라면
+			next = false;
+			lastNum = totalPage;
+		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", productDAO.getList(ar));
 		map.put("totalPage", totalPage);
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
+		map.put("pre", pre);
+		map.put("next", next);
 
 		// System.out.println("totalPage " + totalPage);
 		return map;
