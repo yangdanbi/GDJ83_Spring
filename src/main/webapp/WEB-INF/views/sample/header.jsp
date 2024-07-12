@@ -22,11 +22,14 @@
 			</li>
 			</c:when>
 			<c:otherwise>
-				<li class="nav-item">
+			<li class="nav-item">
 				<a class="nav-link active"	aria-current="page" href="/member/join">회원가입</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link active"	aria-current="page" href="/member/login">로그인</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link active"	aria-current="page" href="/notice/list">공지사항</a>
 			</li>
 			</c:otherwise>
 		

@@ -15,8 +15,8 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			
-				<form action="./list" method="get" class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
-					<div class="col-12">
+				<form action="./list" method="get" style=" width: 40%;" class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
+					<div class="col-12" >
 						<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 						<select name="kind" class="form-select" id="inlineFormSelectPref">
 							<option >옵션</option>

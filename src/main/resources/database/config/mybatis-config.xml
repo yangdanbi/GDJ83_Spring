@@ -13,6 +13,9 @@
   		
   		<typeAlias type="com.winter.app.account.HistoryDTO" alias="HistoryDTO"/>
   		
+  		<typeAlias type="com.winter.app.notice.NoticeDTO" alias="NoticeDTO"/>
+  		
+  		
   		<typeAlias type="com.winter.app.account.ListOption" alias="ListOption"/>
   		
   			<typeAlias type="com.winter.app.account.ListOption" alias="ListOption"/>
