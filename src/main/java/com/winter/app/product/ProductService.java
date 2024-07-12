@@ -8,12 +8,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.winter.app.util.Pager;
+
 @Service
 public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
-	public Map<String, Object> getList(Long page) throws Exception {
+	public Map<String, Object> getList(Long page, String kind, String search) throws Exception {
 		// page가 1이면 2 3 4
 		// 첫번째 숫자 1 11 21 31
 		// 두번째 숫자 10 20 30 40
@@ -23,6 +25,9 @@ public class ProductService {
 
 		if (page < 1) {
 			page = 1L;
+		}
+		if (search == null) {
+			search = "";
 		}
 
 		// 1. 총 갯수로 총 페이지 수 구하기
@@ -42,12 +47,15 @@ public class ProductService {
 		ar.add(startRow);
 		ar.add(lastRow);
 
-//		Pager pager = new Pager();
-//		pager.setStratRow(page);
+		Pager pager = new Pager();
+		pager.setStratRow(startRow);
+		pager.setLastRow(lastRow);
+		pager.setSearch(search);
+		pager.setKind(kind);
 //		
 //		pager.setLastRow(page);
 		// 2. 총 페이지 수로 총 블럭수 구하기
-		long totalCount = productDAO.getTotalCount();
+		long totalCount = productDAO.getTotalCount(pager);
 		long totalPage = totalCount / perPage;
 
 		// 나머지가 0이 아니면 페이지를 1증가해서 모든 데이터를 보여줌
@@ -96,12 +104,14 @@ public class ProductService {
 			lastNum = totalPage;
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", productDAO.getList(ar));
+		map.put("list", productDAO.getList(pager));
 		map.put("totalPage", totalPage);
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		map.put("pre", pre);
 		map.put("next", next);
+		map.put("kind", kind);
+		map.put("search", search);
 
 		// System.out.println("totalPage " + totalPage);
 		return map;
