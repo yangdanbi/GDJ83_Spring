@@ -16,7 +16,7 @@
 		<div class="row justify-content-center">
 			
 			<h2>notice list</h2>
-			<form action="./list" method="get" style=" width: 40%;" class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
+			<form action="./list" method="get" style=" width: 50%;" class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
 					<div class="col-12" >
 						<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 						<select name="kind" class="form-select" id="inlineFormSelectPref">
@@ -62,7 +62,11 @@
 
 				</tbody>
 			</table>
-		
+			<div class="d-grid gap-2 d-md-flex justify-content-end">
+				<a href="./add" class="btn btn-secondary"
+					style="margin: 30px; margin-right: 185px;">글쓰기</a>
+
+			</div>
 
 		</div>
 	</div>

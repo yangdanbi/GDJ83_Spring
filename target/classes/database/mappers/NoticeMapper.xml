@@ -51,7 +51,7 @@
    		
    		</delete>
    		
-   		<insert id="add">
+   		<insert id="add" parameterType="NoticeDTO">
    			
 		INSERT INTO NOTICE 
 		(BOARD_NUM
@@ -70,6 +70,16 @@
 		,'a'
 		)
    		</insert>
+   		
+   	<update id="update" parameterType="NoticeDTO">
+		    
+	    UPDATE NOTICE 
+	    SET
+		  BOARD_TITLE = #{board_title}
+		, BOARD_CONTENTS = #{board_contents}
+		, BOARD_CATEGORY = #{board_category}
+		WHERE BOARD_NUM = #{board_num}
+	</update>
    
    </mapper>
    

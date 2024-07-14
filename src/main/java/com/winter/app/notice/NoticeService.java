@@ -122,5 +122,14 @@ public class NoticeService {
 	public int delete(NoticeDTO noticeDTO) {
 		return noticeDAO.delete(noticeDTO);
 	}
+	
+	public int add(NoticeDTO noticeDTO) {
+		return noticeDAO.add(noticeDTO);
+		
+	}
+	public int update(NoticeDTO noticeDTO) {
+		return noticeDAO.update(noticeDTO);
+		
+	}
 
 }
