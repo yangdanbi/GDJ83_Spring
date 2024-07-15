@@ -6,40 +6,74 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.winter.app.boards.BoardDAO;
+import com.winter.app.boards.BoardDTO;
 import com.winter.app.util.Pager;
 
 @Repository
-public class NoticeDAO {
+public class NoticeDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.winter.app.boards.notice.NoticeDAO.";
 
-	public List<NoticeDTO> list(Pager pager) {
+	@Override
+	public Long getTotalCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
+	}
+
+	@Override
+	public List<BoardDTO> list(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
-	public long getTotalCount(Pager pager) {
-		return 0;
+	@Override
+	public int add(BoardDTO boardDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "add", boardDTO);
 	}
 
-	public NoticeDTO detail(NoticeDTO noticeDTO) {
-		return sqlSession.selectOne(NAMESPACE + "detail", noticeDTO);
+	@Override
+	public int update(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", boardDTO);
 	}
 
-	public int delete(NoticeDTO noticeDTO) {
-		return sqlSession.delete(NAMESPACE + "delete", noticeDTO);
+	@Override
+	public int delete(BoardDTO boardDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", boardDTO);
 	}
 
-	public int add(NoticeDTO noticeDTO) {
-		return sqlSession.insert(NAMESPACE + "add", noticeDTO);
+	@Override
+	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
 	}
 
-	public int update(NoticeDTO noticeDTO) {
-		return sqlSession.update(NAMESPACE + "update", noticeDTO);
+	public int hit(BoardDTO boardDTO) {
+		return sqlSession.update(NAMESPACE + "hit", boardDTO);
 	}
 
-	public int hit(int board_num) {
-		return sqlSession.update(NAMESPACE + "hit", board_num);
-	}
+//	public List<BoardDTO> list(Pager pager) {
+//		return sqlSession.selectList(NAMESPACE + "list", pager);
+//	}
+//
+//	public Long getTotalCount(Pager pager) {
+//
+//		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
+//	}
+//
+//	public NoticeDTO detail(BoardDTO boardDTO) {
+//		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
+//	}
+//
+//	public int delete(BoardDTO boardDTO) {
+//		return sqlSession.delete(NAMESPACE + "delete", boardDTO);
+//	}
+//
+//	public int add(BoardDTO boardDTO) {
+//		return sqlSession.insert(NAMESPACE + "add", boardDTO);
+//	}
+//
+//	public int update(NoticeDTO noticeDTO) {
+//		return sqlSession.update(NAMESPACE + "update", boardDTO);
+//	}
+//
 
 }

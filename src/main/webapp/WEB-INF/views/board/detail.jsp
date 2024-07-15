@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 
-			<h2>notice detail</h2>
+			
 
 			<table class="table table-striped table-hover"
 				style="text-align: center; margin-top: 30px; width: 70%;">
@@ -62,6 +62,7 @@
 			</table>
 			<div class="d-grid gap-2 d-md-flex justify-content-end"
 				style="margin-top: 30px; width: 65%;">
+				
 
 				<button type="button"
 					onclick="location.href='./update?board_num=${dto.board_num}'"

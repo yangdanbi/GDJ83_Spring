@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.winter.app.boards.BoardDTO;
 import com.winter.app.util.Pager;
 
 @Controller
@@ -17,39 +18,40 @@ public class NoticeController {
 	NoticeService noticeService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void list(Pager pager, Model model) throws Exception {
-		List<NoticeDTO> ar = noticeService.list(pager);
+	public String list(Pager pager, Model model) throws Exception {
+		List<BoardDTO> ar = noticeService.list(pager);
 		model.addAttribute("pager", pager);
 		model.addAttribute("list", ar);
+		return "board/list";
 
 	}
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public void detail(NoticeDTO noticeDTO, Model model) {
-		noticeDTO = noticeService.detail(noticeDTO);
+	public String detail(BoardDTO boardDTO, NoticeDTO noticeDTO, Model model) throws Exception {
+		boardDTO = noticeService.detail(boardDTO);
 		String url = "";
-		if (noticeDTO != null) {
-			model.addAttribute("dto", noticeDTO);
-			url = "notice/list";
+		if (boardDTO != null) {
+			model.addAttribute("dto", boardDTO);
+			url = "board/detail";
 		} else {
 			model.addAttribute("result", "없는 게시글 입니다.");
-			model.addAttribute("url", "./list");
+			model.addAttribute("url", "board/list");
 			url = "commons/message";
 		}
-
+		return url;
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String delete(NoticeDTO noticeDTO, Model model) {
-		int result = noticeService.delete(noticeDTO);
+	public String delete(BoardDTO boardDTO, NoticeDTO noticeDTO, Model model) throws Exception {
+		int result = noticeService.delete(boardDTO);
 		String url = "";
 		if (result > 0) {
 			url = "commons/message";
 			model.addAttribute("result", "게시글을 삭제하였습니다.");
-			model.addAttribute("url", "/notice/list");
+			model.addAttribute("url", "/board/list");
 		} else {
 			model.addAttribute("result", "삭제에 실패했습니다.");
-			model.addAttribute("url", "/notice/list");
+			model.addAttribute("url", "/board/list");
 			url = "commons/message";
 		}
 		return url;
@@ -62,41 +64,41 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(NoticeDTO noticeDTO, Model model) {
-		int result = noticeService.add(noticeDTO);
+	public String add(BoardDTO boardDTO, NoticeDTO noticeDTO, Model model) throws Exception {
+		int result = noticeService.add(boardDTO);
 
 		String url = "";
 		if (result > 0) {
-			url = "redirect:./list";
+			url = "redirect:board/list";
 		} else {
 			url = "commons/message";
 			model.addAttribute("result", "글쓰기에 실패했습니다.");
-			model.addAttribute("url", "./list");
+			model.addAttribute("url", "board/list");
 		}
 		return url;
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update(Model model, NoticeDTO noticeDTO) throws Exception {
-		noticeDTO = noticeService.detail(noticeDTO);
+	public String update(BoardDTO boardDTO, Model model, NoticeDTO noticeDTO) throws Exception {
+		boardDTO = noticeService.detail(boardDTO);
 		System.out.println("notice update");
 		String url = "";
-		if (noticeDTO != null) {
-			model.addAttribute("dto", noticeDTO);
-			url = "notice/update";
+		if (boardDTO != null) {
+			model.addAttribute("dto", boardDTO);
+			url = "board/update";
 		} else {
 			model.addAttribute("result", "없는 게시글입니다.");
-			model.addAttribute("url", "./list");
+			model.addAttribute("url", "board/list");
 			url = "commons/message";
 		}
 		return url;
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(NoticeDTO noticeDTO) throws Exception {
-		int result = noticeService.update(noticeDTO);
+	public String update(BoardDTO boardDTO, NoticeDTO noticeDTO) throws Exception {
+		int result = noticeService.update(boardDTO);
 
-		return "redirect:list";
+		return "redirect:board/list";
 
 	}
 

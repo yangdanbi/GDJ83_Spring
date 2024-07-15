@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/sample/header.jsp"></c:import>
-	<h2 style="text-align: center; margin-top: 30px">notice add</h2>
+	<h2 style="text-align: center; margin-top: 30px">notice update</h2>
 	<div class="container justify-content-center" style="width: 50%">
 		<div class="row ">
 
@@ -32,7 +32,7 @@
 				<div class="mb-3">
 					<label for="board_contents" class="form-label">게시글내용</label> 
 					<input type="text" class="form-control" id="board_contents" name="board_contents" value="${dto.board_contents}">
-				</div>`
+				</div>
 					<div class="mb-3">
 					<label for="board_category" class="form-label">분류</label> 
 					<input type="text" class="form-control" id="board_category" name="board_category" value="${dto.board_category}" placeholder="한글자만 입력하세요.">

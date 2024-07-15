@@ -3,41 +3,56 @@ package com.winter.app.boards.notice;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.winter.app.boards.BoardDAO;
+import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardService;
 import com.winter.app.util.Pager;
 
 @Service
-public class NoticeService {
-	@Autowired
-	private NoticeDAO noticeDAO;
+public class NoticeService implements BoardService {
+//	@Autowired
+//	private NoticeDAO noticeDAO;
 
-	public List<NoticeDTO> list(Pager pager) throws Exception {
+	@Autowired
+	@Qualifier("noticeDAO") // 원하는 dao이름을 써줘야함
+	private BoardDAO boardDAO;
+
+	public List<BoardDTO> list(Pager pager) throws Exception {
 
 		pager.makeRow();
 
-		long totalCount = noticeDAO.getTotalCount(pager);
+		long totalCount = boardDAO.getTotalCount(pager);
 		pager.makeNum(totalCount);
 
-		return noticeDAO.list(pager);
+		return boardDAO.list(pager);
 	}
 
-	public NoticeDTO detail(NoticeDTO noticeDTO) {
-		return noticeDAO.detail(noticeDTO);
+	@Override
+	public List<BoardDTO> list() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
+		boardDAO.hit(boardDTO);
+		return boardDAO.detail(boardDTO);
 
 	}
 
-	public int delete(NoticeDTO noticeDTO) {
-		return noticeDAO.delete(noticeDTO);
+	public int delete(BoardDTO boardDTO) throws Exception {
+		return boardDAO.delete(boardDTO);
 	}
 
-	public int add(NoticeDTO noticeDTO) {
-		return noticeDAO.add(noticeDTO);
+	public int add(BoardDTO boardDTO) throws Exception {
+		return boardDAO.add(boardDTO);
 
 	}
 
-	public int update(NoticeDTO noticeDTO) {
-		return noticeDAO.update(noticeDTO);
+	public int update(BoardDTO boardDTO) throws Exception {
+		return boardDAO.update(boardDTO);
 
 	}
 

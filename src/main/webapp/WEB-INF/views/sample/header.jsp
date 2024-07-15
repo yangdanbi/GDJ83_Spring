@@ -5,13 +5,23 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<!-- Navbar content -->
 	<ul class="nav justify-content-center">
-		<li class="nav-item"><a class="nav-link active"
-			aria-current="page" href="/product/list">상품정보</a></li>
+	
+		<li class="nav-item">
+				<a class="nav-link active"	aria-current="page" href="/">Home</a>
+		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link active"aria-current="page" href="/product/list">상품정보</a>
+		</li>
 
-		<li class="nav-item"><a class="nav-link active"
-			aria-current="page" href="/notice/list">공지사항</a></li>
-		<li class="nav-item"><a class="nav-link active"
-			aria-current="page" href="/">Home</a></li>
+		<li class="nav-item">
+			<a class="nav-link active"	aria-current="page" href="/notice/list">공지사항</a>
+		</li>
+		
+		<li class="nav-item">
+			<a class="nav-link active" aria-current="page" href="/qna/list">QnA</a>
+		</li>
+			
 		<c:choose>
 			<c:when test="${not empty member}">
 				<li class="nav-item"><a class="nav-link active"
