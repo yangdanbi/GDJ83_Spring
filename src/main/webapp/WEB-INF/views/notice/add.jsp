@@ -32,7 +32,7 @@
 				</div>
 					<div class="mb-3">
 					<label for="board_category" class="form-label">분류</label> 
-					<input type="text" class="form-control" id="board_category" name="board_category">
+					<input type="text" class="form-control" id="board_category" name="board_category" placeholder="한글자만 입력해주세요.">
 				</div>
 						
 						
