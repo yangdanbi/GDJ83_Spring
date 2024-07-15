@@ -48,7 +48,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${map.list}" var="product">
+					<c:forEach items="${list}" var="product">
 						<tbody>
 							<tr>
 								<td>${product.product_id}</td>
@@ -63,20 +63,20 @@
 			</table>
 			<nav aria-label="Page navigation example" style="margin-top: 30px">
 				<ul class="pagination justify-content-center">
-					<c:if test="${map.pre}">
+					<c:if test="${pager.pre}">
 						<li class="page-item"><a class="page-link"
-							href="./list?page=${map.startNum-1}&kind=${map.kind}&search=${map.search}" aria-label="Previous"> <span
+							href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous"> <span
 								aria-hidden="true">&laquo;</span>
 						</a></li>
 					</c:if>
-					<c:forEach begin="${map.startNum}" end="${map.lastNum}" step="1"
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1"
 						var="i">
-						<li class="page-item"><a class="page-link"href="./list?page=${i}&kind=${map.kind}&search=${map.search}">${i}</a></li>
+						<li class="page-item"><a class="page-link"href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 					</c:forEach>
 					<!--  class에 넣기 ${map.next?'':'disabled'} -->
-					<c:if test="${map.next}">
+					<c:if test="${pager.next}">
 						<li class="page-item "><a class="page-link"
-							href="./list?page=${map.lastNum+1}&kind=${map.kind}&search=${map.search}" aria-label="Next"> <span
+							href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next"> <span
 								aria-hidden="true">&raquo;</span>
 						</a></li>
 					</c:if>

@@ -1,9 +1,9 @@
-package com.winter.app.notice;
+package com.winter.app.boards;
 
 import java.sql.Date;
 
-public class NoticeDTO {
-	private int board_num;
+public class BoardDTO {
+	private Long board_num;
 	private String board_writer;
 	private String board_title;
 	private String board_contents;
@@ -12,11 +12,11 @@ public class NoticeDTO {
 	private String board_category;
 	private Integer board_hit;
 
-	public int getBoard_num() {
+	public Long getBoard_num() {
 		return board_num;
 	}
 
-	public void setBoard_num(int board_num) {
+	public void setBoard_num(Long board_num) {
 		this.board_num = board_num;
 	}
 

@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-   <mapper namespace="com.winter.app.notice.NoticeDAO">
+   <mapper namespace="com.winter.app.boards.notice.NoticeDAO">
    		<select id="list" resultType="NoticeDTO"  parameterType="Pager">
    		
 	   			SELECT *
@@ -27,7 +27,7 @@
 				  	   </where>
 						ORDER BY BOARD_NUM DESC)
 						B)
-						WHERE R BETWEEN #{stratRow} AND #{lastRow}	   
+						WHERE R BETWEEN #{startRow} AND #{lastRow}	   
 
    		</select>
    		
@@ -80,7 +80,11 @@
 		, BOARD_CATEGORY = #{board_category}
 		WHERE BOARD_NUM = #{board_num}
 	</update>
-   
+   <update id="hit" parameterType="int">
+		 UPDATE NOTICE 
+		 SET BOARD_HIT = BOARD_HIT + 1
+			WHERE BOARD_NUM = #{board_num}
+ 	</update>
    </mapper>
    
    

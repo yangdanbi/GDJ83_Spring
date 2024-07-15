@@ -1,15 +1,14 @@
-package com.winter.app.notice;
+package com.winter.app.boards.notice;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.winter.app.product.ProductDTO;
+import com.winter.app.util.Pager;
 
 @Controller
 @RequestMapping("/notice/*")
@@ -18,9 +17,10 @@ public class NoticeController {
 	NoticeService noticeService;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void list(Long page, String kind, String search, Model model) {
-		Map<String, Object> map = noticeService.list(page, kind, search);
-		model.addAttribute("map", map);
+	public void list(Pager pager, Model model) throws Exception {
+		List<NoticeDTO> ar = noticeService.list(pager);
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", ar);
 
 	}
 
@@ -62,9 +62,8 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(NoticeDTO noticeDTO,Model model) {
+	public String add(NoticeDTO noticeDTO, Model model) {
 		int result = noticeService.add(noticeDTO);
-		
 
 		String url = "";
 		if (result > 0) {
@@ -92,6 +91,7 @@ public class NoticeController {
 		}
 		return url;
 	}
+
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String update(NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.update(noticeDTO);

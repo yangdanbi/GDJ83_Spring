@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			
-			<h2>notice list</h2>
+			
 			<form action="./list" method="get" style=" width: 50%;" class="row row-cols-lg-auto g-3 align-items-center justify-content-center">
 					<div class="col-12" >
 						<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
@@ -49,7 +49,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${map.list}" var="notice"> 
+					<c:forEach items="${list}" var="notice"> 
 						<tbody>
 							<tr>
 							<td>${notice.board_num}</td>
@@ -62,6 +62,27 @@
 
 				</tbody>
 			</table>
+						<nav aria-label="Page navigation example" style="margin-top: 30px">
+				<ul class="pagination justify-content-center">
+					<c:if test="${pager.pre}">
+						<li class="page-item"><a class="page-link"
+							href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous"> <span
+								aria-hidden="true">&laquo;</span>
+						</a></li>
+					</c:if>
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1"
+						var="i">
+						<li class="page-item"><a class="page-link"href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+					</c:forEach>
+					<!--  class에 넣기 ${map.next?'':'disabled'} -->
+					<c:if test="${pager.next}">
+						<li class="page-item "><a class="page-link"
+							href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next"> <span
+								aria-hidden="true">&raquo;</span>
+						</a></li>
+					</c:if>
+				</ul>
+			</nav>
 			<div class="d-grid gap-2 d-md-flex justify-content-end">
 				<a href="./add" class="btn btn-secondary"
 					style="margin: 30px; margin-right: 185px;">글쓰기</a>

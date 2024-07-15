@@ -54,7 +54,7 @@
 		</where>
 		ORDER BY PRODUCT_ID DESC)
 		B)
-		WHERE R BETWEEN #{stratRow} AND #{lastRow}
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
 		<!-- ]]> -->
 	</select>
 

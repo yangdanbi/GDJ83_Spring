@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.winter.app.DefaultTest;
-import com.winter.app.notice.NoticeDAO;
-import com.winter.app.notice.NoticeDTO;
+import com.winter.app.boards.notice.NoticeDAO;
+import com.winter.app.boards.notice.NoticeDTO;
 
 public class ProductDAOTest extends DefaultTest {
 	@Autowired
@@ -37,7 +37,7 @@ public class ProductDAOTest extends DefaultTest {
 	public void addTestADO() throws Exception {
 		ProductDTO productDTO = new ProductDTO();
 		for (int i = 0; i < 100; i++) {
-			noticeDTO.setProduct_type("자유입출금" + i);
+			productDTO.setProduct_type("자유입출금" + i);
 			double r = ((int) (Math.random() * 1000)) / 100.0;
 			productDTO.setProduct_rate(Math.random());
 			productDTO.setProduct_rate(r);
@@ -52,10 +52,16 @@ public class ProductDAOTest extends DefaultTest {
 	public void addTestADO1() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		for (int i = 0; i < 100; i++) {
-			noticeDTO.setBoard_title("게시물" + i);
-			noticeDTO.setBoard_contents("상세설명" + i);
+			noticeDTO.setBoard_writer("ydb");
+			noticeDTO.setBoard_title("게시물 " + i);
+			noticeDTO.setBoard_contents("상세설명 " + i);
 			noticeDTO.setBoard_category("a");
-			Thread.sleep(500);
+			noticeDAO.add(noticeDTO);
+
+			if (i % 10 == 0) {
+				Thread.sleep(500);
+
+			}
 		}
 		System.out.println("Finish");
 	}

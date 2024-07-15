@@ -1,12 +1,14 @@
 package com.winter.app.product;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.winter.app.util.Pager;
 
 //객체는 직접 만들지 않음 Autowired
 @Controller
@@ -15,13 +17,15 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public void getlist(Long page, String kind, String search, Model model) throws Exception {
+	@RequestMapping(value = "list", method = RequestMethod.GET) // , Long page, String kind, String search
+	public void getlist(Pager pager, Model model) throws Exception {
 		System.out.println("ProductController getList()");
 		// List<ProductDTO> ar = productService.getList(page);
-		Map<String, Object> map = productService.getList(page, kind, search);
-		System.out.println("page: " + page);
-		model.addAttribute("map", map);
+		List<ProductDTO> ar = productService.getList(pager);
+		// System.out.println("page: " + page);
+
+		model.addAttribute("pager", pager);
+		model.addAttribute("list", ar);
 	}
 
 	// detail.jsp로 보냄
