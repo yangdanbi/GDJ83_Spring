@@ -48,18 +48,15 @@
 					</tr>
 				</tbody>
 			</table>
-			
-			
-				
 				<div class="d-grid gap-2 d-md-flex justify-content-end"	style="margin-top: 30px; width: 65%;">
 					
 				<c:if test="${dto.board_writer eq member.member_id}">
 					<button type="button" onclick="location.href='./update?board_num=${dto.board_num}'"	class="btn btn-secondary me-md-2">
-						게시글 수정
+						수정
 					</button>
 					<form action="./delete?board_num=${dto.board_num}" method="post">
 						<button type="submit" class="btn btn-danger  ">
-							게시글 삭제
+							삭제
 						</button>
 					</form>
 				</c:if>

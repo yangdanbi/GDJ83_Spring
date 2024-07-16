@@ -41,8 +41,7 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete(NAMESPACE + "delete", boardDTO);
 	}
 
 	@Override

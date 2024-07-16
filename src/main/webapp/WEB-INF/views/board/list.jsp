@@ -52,9 +52,16 @@
 					<c:forEach items="${list}" var="notice"> 
 						<tbody>
 							<tr>
-							<td>${notice.board_num}</td>
 								<td>
-									<a href="./detail?board_num=${notice.board_num}">
+									<c:if test="${notice.del eq 0}">
+										${notice.board_num}
+									</c:if>
+								</td>
+								<td>
+								<c:choose>
+									<c:when test="${notice.del eq 0}">
+								
+										<a href="./detail?board_num=${notice.board_num}">
 										<c:catch>
 											<c:forEach begin="1" end="${notice.depth}">
 												-->
@@ -62,6 +69,11 @@
 										</c:catch>
 										${notice.board_title}
 									</a>
+									</c:when>
+									<c:otherwise>
+										삭제된 게시글입니다.
+									</c:otherwise>
+								</c:choose>
 								</td>
 								<td>${notice.board_writer}</td> 
 								<td>${notice.create_date}</td> 
