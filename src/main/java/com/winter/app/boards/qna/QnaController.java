@@ -60,8 +60,16 @@ public class QnaController {
 	}
 
 	@GetMapping("update")
-	public String update() throws Exception {
-		return "board/update";
+	public String update(QnaDTO qnaDTO, BoardDTO boardDTO, Model model) throws Exception {
+		boardDTO = qnaService.detail(qnaDTO);
+		model.addAttribute("dto", boardDTO);
+		return "board/add";
+	}
+
+	@PostMapping("update")
+	public String update(QnaDTO qnaDTO, Model model) throws Exception {
+		int result = qnaService.update(qnaDTO);
+		return "redirect:./list";
 	}
 
 	@GetMapping("reply")
@@ -69,6 +77,14 @@ public class QnaController {
 		model.addAttribute("dto", qnaDTO);
 
 		return "board/add";
+	}
+
+	@PostMapping("reply")
+	public String reply(QnaDTO qnaDTO, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		qnaDTO.setBoard_writer(memberDTO.getMember_id());
+		int result = qnaService.reply(qnaDTO);
+		return "redirect:./list";
 	}
 
 }

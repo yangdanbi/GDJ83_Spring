@@ -26,7 +26,7 @@
 							<option>작성자</option>
 						</select>
 					</div>
-					<div class="col-12">
+					<div class="col-12 ">
 						<label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
 						<div class="input-group">
 							<input type="text" name="search" class="form-control"
@@ -38,7 +38,7 @@
 					</div>
 				</form>
 			<table class="table table-striped table-hover"
-				style="text-align: center; margin-top: 30px; width: 70%;">
+				style=" margin-top: 30px; width: 70%;">
 				<thead>
 					<tr>
 						<th scope="col">번호</th>
@@ -53,7 +53,16 @@
 						<tbody>
 							<tr>
 							<td>${notice.board_num}</td>
-								<td><a href="./detail?board_num=${notice.board_num}">${notice.board_title}</a></td>
+								<td>
+									<a href="./detail?board_num=${notice.board_num}">
+										<c:catch>
+											<c:forEach begin="1" end="${notice.depth}">
+												-->
+											</c:forEach>
+										</c:catch>
+										${notice.board_title}
+									</a>
+								</td>
 								<td>${notice.board_writer}</td> 
 								<td>${notice.create_date}</td> 
 								<td>${notice.board_hit}</td> 

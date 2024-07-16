@@ -31,8 +31,7 @@ public class QnaService implements BoardService {
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.update(boardDTO);
 	}
 
 	@Override
@@ -43,11 +42,20 @@ public class QnaService implements BoardService {
 
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
+		qnaDAO.hit(boardDTO);
 		return qnaDAO.detail(boardDTO);
 	}
 
 	public int reply(QnaDTO qnaDTO) throws Exception {
-		QnaDTO parent = (QnaDTO) qnaDAO.detail(qnaDTO);
+		QnaDTO parent = (QnaDTO) qnaDAO.detail(qnaDTO); // 부모의 정보
+		// 1. step 1씩 업데이트
+		int result = qnaDAO.replyUpdate(parent);// 부모의 정보를 보냄
+
+		// 2. 답글의 REF, STEP, DEPTH를 세팅
+		qnaDTO.setRef(parent.getRef());// 부모의 ref를 꺼내옴
+		qnaDTO.setStep(parent.getStep() + 1);
+		qnaDTO.setDepth(parent.getDepth() + 1);
+
 		return qnaDAO.reply(qnaDTO);
 	}
 

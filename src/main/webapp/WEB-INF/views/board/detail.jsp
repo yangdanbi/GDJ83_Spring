@@ -70,10 +70,11 @@
 					<button type="button" onclick="location.href='./reply?board_num=${dto.board_num}'" class="btn btn-primary me-md-2">
 						답글
 					</button>
+				</c:if>
 					<button type="button" onclick="location.href='./list'"	class="btn btn-secondary me-md-2">
 						이전으로
 					</button>
-				</c:if>
+				
 				
 				</div>
 				

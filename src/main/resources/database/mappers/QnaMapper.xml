@@ -102,12 +102,37 @@
 			 , SYSDATE
 			 , SYSDATE
 			 , 'Q'
-			 ,	NOTICE_SEQ.CURRVAL
-			 ,	0
-			 ,	0
+			 ,	#{ref}
+			 ,	#{step}
+			 ,	#{depth}
 			  )
  	
    	</insert>
+   	<update id="replyUpdate" parameterType="QnaDTO">
+	   	UPDATE QNA 
+		SET STEP = STEP +1
+		WHERE REF = #{ref} 
+					AND
+					STEP > #{step}
+   	
+   	</update>
+   	
+   	<update id="update"  parameterType="QnaDTO">
+   		UPDATE QNA
+   		SET 
+   			 BOARD_TITLE = #{board_title}
+   			,BOARD_CONTENTS = #{board_contents}
+   			,UPDATE_DATE = SYSDATE
+   		WHERE BOARD_NUM = ${board_num}		
+   							
+   	
+   	</update>
+   	  <update id="hit" parameterType="QnaDTO">
+		 UPDATE QNA 
+		 SET BOARD_HIT = BOARD_HIT + 1
+			WHERE BOARD_NUM = #{board_num}
+ 	</update>
+   	
    
    
    </mapper>

@@ -22,11 +22,11 @@
 			
 				<div class="mb-3">
 					<label for="board_title" class="form-label">게시글제목</label> 
-					<input type="text" class="form-control" id="board_title" name="board_title">
+					<input type="text" class="form-control" id="board_title" name="board_title" value="${dto.board_title}">
 				</div>
 				<div class="mb-3">
 					<label for="board_contents" class="form-label">게시글내용</label> 
-					<textarea name="board_contents" class="form-control" id="board_contents" ></textarea>
+					<textarea name="board_contents" class="form-control" id="board_contents" >${dto.board_contents}</textarea>
 					
 				</div>
 				

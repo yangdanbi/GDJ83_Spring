@@ -16,28 +16,27 @@ public class QnaDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	private final String NAMEPACE = "com.winter.app.boards.qna.QnaDAO.";
+	private final String NAMESPACE = "com.winter.app.boards.qna.QnaDAO.";
 
 	@Override
 	public Long getTotalCount(Pager pager) throws Exception {
-		return sqlSession.selectOne(NAMEPACE + "getTotalCount", pager);
+		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
-		return sqlSession.selectList(NAMEPACE + "list", pager);
+		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
 
-		return sqlSession.insert(NAMEPACE + "add", boardDTO);
+		return sqlSession.insert(NAMESPACE + "add", boardDTO);
 	}
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE + "update", boardDTO);
 	}
 
 	@Override
@@ -49,17 +48,20 @@ public class QnaDAO implements BoardDAO {
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 
-		return sqlSession.selectOne(NAMEPACE + "detail", boardDTO);
+		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
 	}
 
 	@Override
 	public int hit(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update(NAMESPACE + "hit", boardDTO);
 	}
 
 	public int reply(QnaDTO qnaDTO) throws Exception {
-		return sqlSession.insert(NAMEPACE + "reply", qnaDTO);
+		return sqlSession.insert(NAMESPACE + "reply", qnaDTO);
+	}
+
+	public int replyUpdate(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "replyUpdate", qnaDTO);
 	}
 
 }
