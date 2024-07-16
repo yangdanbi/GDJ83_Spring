@@ -75,9 +75,16 @@
 									</c:otherwise>
 								</c:choose>
 								</td>
-								<td>${notice.board_writer}</td> 
-								<td>${notice.create_date}</td> 
-								<td>${notice.board_hit}</td> 
+								<c:choose>
+								<c:when test="${notice.del eq 0}">
+									<td>${notice.board_writer}</td> 
+									<td>${notice.create_date}</td> 
+									<td>${notice.board_hit}</td> 
+								</c:when>
+								<c:otherwise>
+										<td colspan="3" style="text-align: center;">
+									</c:otherwise>
+							</c:choose>
 							</tr>
 					</c:forEach> 
 
