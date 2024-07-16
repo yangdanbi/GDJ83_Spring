@@ -73,9 +73,11 @@
 									<c:otherwise>
 										삭제된 게시글입니다.
 									</c:otherwise>
+									
 								</c:choose>
 								</td>
 								<c:choose>
+								
 								<c:when test="${notice.del eq 0}">
 									<td>${notice.board_writer}</td> 
 									<td>${notice.create_date}</td> 
