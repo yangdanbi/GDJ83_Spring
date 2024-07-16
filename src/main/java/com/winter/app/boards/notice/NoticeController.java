@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,10 +18,15 @@ public class NoticeController {
 	@Autowired
 	NoticeService noticeService;
 
+	@ModelAttribute("board")
+	public String gerBoard() {
+		return "Notice";
+	}
+
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(Pager pager, Model model) throws Exception {
 		List<BoardDTO> ar = noticeService.list(pager);
-		model.addAttribute("pager", pager);
+		// model.addAttribute("pager", pager);
 		model.addAttribute("list", ar);
 		return "board/list";
 
@@ -48,10 +54,10 @@ public class NoticeController {
 		if (result > 0) {
 			url = "commons/message";
 			model.addAttribute("result", "게시글을 삭제하였습니다.");
-			model.addAttribute("url", "/board/list");
+			model.addAttribute("url", "./list");
 		} else {
 			model.addAttribute("result", "삭제에 실패했습니다.");
-			model.addAttribute("url", "/board/list");
+			model.addAttribute("url", "./list");
 			url = "commons/message";
 		}
 		return url;
@@ -59,7 +65,8 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public void add() {
+	public String add() {
+		return "board/add";
 
 	}
 
@@ -69,11 +76,11 @@ public class NoticeController {
 
 		String url = "";
 		if (result > 0) {
-			url = "redirect:board/list";
+			url = "redirect:./list";
 		} else {
 			url = "commons/message";
 			model.addAttribute("result", "글쓰기에 실패했습니다.");
-			model.addAttribute("url", "board/list");
+			model.addAttribute("url", "./list");
 		}
 		return url;
 	}
@@ -98,7 +105,7 @@ public class NoticeController {
 	public String update(BoardDTO boardDTO, NoticeDTO noticeDTO) throws Exception {
 		int result = noticeService.update(boardDTO);
 
-		return "redirect:board/list";
+		return "redirect:./list";
 
 	}
 

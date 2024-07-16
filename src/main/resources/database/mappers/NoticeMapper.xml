@@ -11,15 +11,15 @@
 			 BOARD_NUM > 0
 
 			<choose>
-			<when test="kind=='k3'">
-					AND BOARD_WRITER LIKE '%'||#{search}||'%'
-				</when>
-				<when test="kind=='k2'">
-					AND BOARD_CONTENTS LIKE '%'||#{search}||'%'
-				</when>
-				<otherwise>
-					AND BOARD_TITLE LIKE '%'||#{search}||'%'
-				</otherwise> 
+			<when test="kind=='k1'">
+				AND BOARD_TITLE LIKE '%'||#{search}||'%'
+			</when>
+			<when test="kind=='k2'">
+				AND BOARD_CONTENTS LIKE '%'||#{search}||'%'
+			</when>
+			<otherwise>
+				AND BOARD_WRITER LIKE '%'||#{search}||'%'
+			</otherwise> 
 			</choose>
 		</where>
 
@@ -37,14 +37,14 @@
 		  	   			<where>
 		  	   			   BOARD_NUM > 0
 		  	   			<choose>
-							<when test="kind=='k3'">
-								AND BOARD_WRITER LIKE '%'||#{search}||'%'
+							<when test="kind=='k1'">
+								AND BOARD_TITLE LIKE '%'||#{search}||'%'
 							</when>
 							<when test="kind=='k2'">
 								AND BOARD_CONTENTS LIKE '%'||#{search}||'%'
 							</when>
 							<otherwise>
-								AND BOARD_TITLE LIKE '%'||#{search}||'%'
+								AND BOARD_WRITER LIKE '%'||#{search}||'%'
 							</otherwise> 
 						</choose>
 				  	   </where>

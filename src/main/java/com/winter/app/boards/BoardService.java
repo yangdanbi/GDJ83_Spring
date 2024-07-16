@@ -2,10 +2,12 @@ package com.winter.app.boards;
 
 import java.util.List;
 
+import com.winter.app.util.Pager;
+
 public interface BoardService {
 
 	// list
-	public List<BoardDTO> list() throws Exception;
+	public List<BoardDTO> list(Pager pager) throws Exception;
 
 	// add
 	public int add(BoardDTO boardDTO) throws Exception;

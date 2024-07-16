@@ -21,9 +21,9 @@
 						<label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
 						<select name="kind" class="form-select" id="inlineFormSelectPref">
 							<option >옵션</option>
-							<option value="k1">게시글내용</option>
+							<option value="k1">게시글제목</option>
 							<option value="k2" >게시글내용</option>
-							<option value="k3" >작성자</option>
+							<option>작성자</option>
 						</select>
 					</div>
 					<div class="col-12">

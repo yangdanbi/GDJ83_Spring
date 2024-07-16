@@ -30,12 +30,6 @@ public class NoticeService implements BoardService {
 		return boardDAO.list(pager);
 	}
 
-	@Override
-	public List<BoardDTO> list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		boardDAO.hit(boardDTO);
 		return boardDAO.detail(boardDTO);
