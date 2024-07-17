@@ -15,13 +15,13 @@
   		
   		<typeAlias type="com.winter.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.winter.app.boards.qna.QnaDTO" alias="QnaDTO"/>
-  			<typeAlias type="com.winter.app.boards.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.winter.app.boards.BoardDTO" alias="BoardDTO"/>
   		
   		<typeAlias type="com.winter.app.account.ListOption" alias="ListOption"/>
   		
-  			<typeAlias type="com.winter.app.account.ListOption" alias="ListOption"/>
+  		<typeAlias type="com.winter.app.account.ListOption" alias="ListOption"/>
   			
-  			<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
   		
   </typeAliases>
   
