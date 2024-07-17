@@ -123,3 +123,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
+src/main/resources/database/config/database.properties
+target/classes/database/config/database.properties
+src/main/resources/database/config/database.properties
+target/classes/database/config/database.properties
