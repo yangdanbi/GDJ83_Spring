@@ -34,7 +34,9 @@ public class QnaController {
 		List<BoardDTO> ar = qnaService.list(pager);
 		mv.addObject("list", ar);
 		mv.setViewName("board/list");
+		System.out.println("test");
 		return mv;
+
 	}
 
 	@GetMapping("detail")
