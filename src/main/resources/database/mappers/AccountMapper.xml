@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.winter.app.account.AccountDAO">
+  
+  
+	
+	<insert id="add" parameterType="AccountDTO">
+  		INSERT INTO PRODUCT_INFO (PRODUCT_ID, JOIN_DATE, ACCOUNT_NUMBER, MEMBER_ID, BALANCE)
+  		VALUES(#{product_id},SYSDATE, #{account_number}, #{member_id}, 0)
+  	</insert>
+  	
+  	<!-- <select id="list" parameterType="MemberDTO" resultType="AccountDTO">
+  		SELECT ACCOUNT_NUMBER, BALANCE
+  		FROM PRODUCT_INFO 
+  		WHERE MEMBER_ID = #{member_id}
+  	
+  	</select> -->
+  	<select id="detail"  parameterType="AccountDTO" resultMap="detailResult">
+  		SELECT PI.PRODUCT_ID
+             , PI.JOIN_DATE
+             , PI.ACCOUNT_NUMBER
+             , PI.MEMBER_ID
+             , PI.BALANCE
+             , P.PRODUCT_TYPE
+             , P.PRODUCT_RATE
+             , P.PRODUCT_DETAIL
+		  FROM PRODUCT_INFO PI
+		  JOIN PRODUCT P
+			ON PI.PRODUCT_ID  = P.PRODUCT_ID
+		 WHERE PI.ACCOUNT_NUMBER = #{account_number}
+  	</select>
+  	
+  	<resultMap type="AccountDTO" id="detailResult">
+  		<id column="ACCOUNT_NUMBER" property="account_number"/>
+  		<result column="PRODUCT_ID" property="product_id"/>
+  		<result column="JOIN_DATE" property="join_date"/>
+  		<result column="BALANCE" property="balance"/>
+  		<!--1:N의 관계  -->
+  		<!--  리턴타입 - productDTO-->
+  		<association property="productDTO" javaType="ProductDTO">
+  			<result column="PRODUCT_TYPE" property="product_type"/>
+  			<result column="PRODUCT_RATE" property="product_rate"/>
+  			<result column="PRODUCT_DETAIL" property="product_detail"/>
+  		</association>
+  		
+  	</resultMap>
+  	
+  	<!-- 계좌이체 보내는쪽 -->
+  	<insert id="transfer" parameterType="HistoryDTO" >
+		INSERT INTO HISTORY 
+		VALUES(HISTORY_SEQ.NEXTVAL,#{account_sender},SYSDATE,#{amount},
+				(SELECT BALANCE 
+				FROM PRODUCT_INFO
+				WHERE ACCOUNT_NUMBER = #{account_sender})-#{amount},'O')
+	</insert>
+	
+	  	<!-- 계좌이체 받는쪽 -->
+	 <insert id="transfer_u" parameterType="HistoryDTO" >
+		INSERT INTO HISTORY 
+		VALUES(HISTORY_SEQ.NEXTVAL,#{account_number},SYSDATE,#{amount},
+				(SELECT BALANCE 
+				FROM PRODUCT_INFO
+				WHERE ACCOUNT_NUMBER = #{account_number})+#{amount},'I')
+	</insert>
+	
+		<!-- 계좌이체 보내는쪽 -->
+	<update id="pro_up" parameterType="HistoryDTO" >
+		UPDATE PRODUCT_INFO 
+		SET BALANCE = BALANCE - #{amount}
+		WHERE ACCOUNT_NUMBER = #{account_sender}
+	</update>
+	
+		<!-- 계좌이체 받는쪽 -->
+	<update id="pro_up_u" parameterType="HistoryDTO" >
+		UPDATE PRODUCT_INFO 
+		SET BALANCE = BALANCE + #{amount}
+		WHERE ACCOUNT_NUMBER = #{account_number}
+	</update>
+	
+	<select id="list" parameterType="ListOption" resultType="HistoryDTO">
+		SELECT 
+		HISTORY_TIME
+		, AMOUNT
+		, BALANCE
+		, TYPE 
+		FROM HISTORY 
+		WHERE ACCOUNT_NUMBER = #{account_number}
+		<choose>
+		 	<when test="io==0">
+		 		AND TYPE = 'I'
+		 	</when>
+		 	<when test="io==1">
+		 		AND TYPE ='O'
+		 	</when>
+	<!-- 	 	<otherwise>
+             	AND TYPE IN('I','O')
+             </otherwise>	 -->
+		</choose>
+		
+			ORDER BY HISTORY_ID 
+			
+		 <choose>
+             <when test="order==1">
+             	ASC
+             </when>
+             <otherwise>
+             	DESC
+             </otherwise>
+         </choose>   
+	</select>
+</mapper>

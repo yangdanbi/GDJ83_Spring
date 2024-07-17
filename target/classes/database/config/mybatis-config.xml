@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  <typeAliases>
+  		<typeAlias type="com.winter.app.product.ProductDTO" alias="ProductDTO"/>
+  		<typeAlias type="java.util.Map" alias="Map"/>
+  		
+  		<typeAlias type="com.winter.app.member.MemberDTO" alias="MemberDTO"/>
+  		
+  		<typeAlias type="com.winter.app.account.AccountDTO" alias="AccountDTO"/>
+  		
+  		<typeAlias type="com.winter.app.account.HistoryDTO" alias="HistoryDTO"/>
+  		
+  		<typeAlias type="com.winter.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>
+  		<typeAlias type="com.winter.app.boards.qna.QnaDTO" alias="QnaDTO"/>
+  			<typeAlias type="com.winter.app.boards.BoardDTO" alias="BoardDTO"/>
+  		
+  		<typeAlias type="com.winter.app.account.ListOption" alias="ListOption"/>
+  		
+  			<typeAlias type="com.winter.app.account.ListOption" alias="ListOption"/>
+  			
+  			<typeAlias type="com.winter.app.util.Pager" alias="Pager"/>
+  		
+  </typeAliases>
+  
+  
+  </configuration>

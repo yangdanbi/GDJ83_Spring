@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="com.winter.app.boards.qna.QnaDAO">
+   <!-- 반복되는 쿼리문을 모아놓고 가져다가 쓸 수 있음 -->
+   <sql id="searchSql">
+   		<where>
+			BOARD_NUM > 0
+			<choose>
+				<when test="kind=='title'">
+					AND BOARD_TITLE  
+				</when>
+				<when test="kind=='contents'">
+					AND BOARD_CONTENTS 
+				</when>
+				<otherwise>
+					AND BOARD_WRITER 
+				</otherwise>
+			</choose>
+			LIKE '%'||#{search}||'%'
+		</where>
+   
+   </sql>
+   	<select id="getTotalCount" parameterType="Pager"  resultType="Long">
+   		SELECT COUNT(BOARD_NUM)
+   		FROM QNA
+   		<include refid="searchSql"></include> 
+   	
+   	</select>
+   
+   	<select id="list" parameterType="Pager" resultType="QnaDTO">
+	   	SELECT *
+	   	FROM  (
+	   		  SELECT ROWNUM R, Q.* 
+	   		  FROM (
+					SELECT * 
+					FROM QNA
+					<include refid="searchSql"></include> <!-- 반복되는 sql문을 사용하는 법 -->
+					ORDER BY REF DESC,STEP ASC
+					) Q
+				)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+      	
+   	</select>
+   	
+   	<insert id="add" parameterType="QnaDTO" >
+   		INSERT INTO
+   		QNA(
+   			BOARD_NUM
+   		  , BOARD_WRITER
+   		  , BOARD_TITLE
+   		  , BOARD_CONTENTS
+   		  ,	CREATE_DATE
+   		  , UPDATE_DATE
+   		  , BOARD_CATEGORY
+   		  , REF
+   		  , STEP
+   		  , DEPTH
+   		    )
+		VALUES(
+				NOTICE_SEQ.NEXTVAL
+			 ,	#{board_writer}
+			 ,	#{board_title}
+			 ,	#{board_contents}
+			 , SYSDATE
+			 , SYSDATE
+			 , 'Q'
+			 ,	NOTICE_SEQ.CURRVAL
+			 ,	0
+			 ,	0
+			  )
+ 	
+   	</insert>
+   	
+   	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO"> 
+   		SELECT * 
+   		FROM QNA
+   		WHERE BOARD_NUM = ${board_num} 
+   						  AND
+   						  DEL = 0
+   	</select>
+   	
+   	   	<insert id="reply" parameterType="QnaDTO" >
+   		INSERT INTO
+   		QNA(
+   			BOARD_NUM
+   		  , BOARD_WRITER
+   		  , BOARD_TITLE
+   		  , BOARD_CONTENTS
+   		  ,	CREATE_DATE
+   		  , UPDATE_DATE
+   		  , BOARD_CATEGORY
+   		  , REF
+   		  , STEP
+   		  , DEPTH
+   		    )
+		VALUES(
+				NOTICE_SEQ.NEXTVAL
+			 ,	#{board_writer}
+			 ,	#{board_title}
+			 ,	#{board_contents}
+			 , SYSDATE
+			 , SYSDATE
+			 , 'Q'
+			 ,	#{ref}
+			 ,	#{step}
+			 ,	#{depth}
+			  )
+ 	
+   	</insert>
+   	<update id="replyUpdate" parameterType="QnaDTO">
+	   	UPDATE QNA 
+		SET STEP = STEP +1
+		WHERE REF = #{ref} 
+					AND
+					STEP > #{step}
+   	
+   	</update>
+   	
+   	<update id="update"  parameterType="QnaDTO">
+   		UPDATE QNA
+   		SET 
+   			 BOARD_TITLE = #{board_title}
+   			,BOARD_CONTENTS = #{board_contents}
+   			,UPDATE_DATE = SYSDATE
+   		WHERE BOARD_NUM = ${board_num}		
+   							
+   	
+   	</update>
+   	  <update id="hit" parameterType="QnaDTO">
+		 UPDATE QNA 
+		 SET BOARD_HIT = BOARD_HIT + 1
+			WHERE BOARD_NUM = #{board_num}
+ 	</update>
+   	
+   <delete id="delete" parameterType="QnaDTO">
+   		UPDATE QNA 
+   		SET 
+   			DEL=1 
+   	   	WHERE BOARD_NUM = #{board_num}
+   </delete>
+   
+   </mapper>
