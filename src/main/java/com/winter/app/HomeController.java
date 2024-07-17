@@ -26,7 +26,7 @@ public class HomeController {
 	public String home(HttpServletRequest request) { // HttpServletResponse response,
 		// 하위 -> 상위 o
 		// 상위 -> 하위 x
-
+		System.out.println("qna_homeController");
 		HttpSession httpSession = request.getSession();
 
 		// 쿠키

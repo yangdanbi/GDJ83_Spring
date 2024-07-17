@@ -21,6 +21,7 @@ import com.winter.app.util.Pager;
 @RequestMapping("/qna/*") // 이건 그대로 써줘야 함
 
 public class QnaController {
+	private int master;
 	@Autowired
 	private QnaService qnaService;
 
