@@ -66,7 +66,7 @@
 	                                            </div>
 	                                            
 	                                            <div class="row mb-2 mt-4 mx-0 px-0">
-	                                                <button type="button" id="add_img_btn" class="btn btn-secondary mb-2">사진파일추가</button>
+	                                                <button type="button" id="add_btn" class="btn btn-secondary mb-2">사진파일추가</button>
 	                                            </div>
 	                                            <div id="result">
 	                                            </div>

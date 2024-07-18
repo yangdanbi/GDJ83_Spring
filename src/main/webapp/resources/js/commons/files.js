@@ -1,6 +1,6 @@
 
 
-const add_img_btn = document.getElementById("add_img_btn");
+const add_btn = document.getElementById("add_btn");
 const result = document.getElementById("result");
 
 
@@ -14,7 +14,7 @@ function setMax(m) {
 }
 
 
-add_img_btn.addEventListener("click", function() {
+add_btn.addEventListener("click", function() {
 
     if(count >= max) {
         alert("첨부파일은 최대" + max + "개만 가능합니다");
@@ -49,7 +49,7 @@ add_img_btn.addEventListener("click", function() {
     result.append(parent);
 
     idx++;
-    max++;
+    count++;
 
 })
 

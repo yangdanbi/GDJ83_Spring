@@ -30,7 +30,14 @@
 						<input type="text" class="form-control" id="product_rate" name="product_rate">
 					</div>
 				
-					<button type="submit" class="btn btn-primary">등록</button>
+					<div class="row mb-2 mt-4 mx-0 px-0">
+	                	<button type="button" id="add_btn" class="btn btn-secondary mb-2">사진파일 추가</button>
+	                </div>
+	                <div id="result">
+	                </div>
+				
+					<button type="button" class="btn btn-primary">등록</button>
+					<div id="result"></div>
 				</form>
 			</div>		
 		
@@ -50,5 +57,7 @@
 	</div>
 	
 	<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
+	<script>setMax(5);</script>
 </body>
 </html>
