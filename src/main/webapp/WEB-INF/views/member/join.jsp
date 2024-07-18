@@ -27,18 +27,23 @@
 	                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">회원가입</h3></div>
 	                                    <div class="card-body">
 	                                        <form>
+	                                        	<div class="form-floating mb-3">
+	                                            	<input class="form-control join_info" id="member_id" type="text" placeholder="ID" name="member_id" />
+	                                            	<label for="member_id">ID</label>
+	                                            </div>
 	                                            <div class="row mb-3">
-	                                                <div class="col-md-6">
-	                                                    <div class="form-floating mb-3 mb-md-0">
-	                                                        <input class="form-control join_info" id="member_id" type="text" placeholder="ID" name="member_id" />
-	                                                        <label for="member_id">ID</label>
-	                                                    </div>
-	                                                </div>
 	                                                <div class="col-md-6">
 	                                                    <div class="form-floating">
 	                                                        <input class="form-control join_info" id="member_pwd" type="password" placeholder="Password" name="member_pwd" />
 	                                                        <label for="member_pwd">Password</label>
 	                                                        <div id="password-error" class="text-danger"></div>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="col-md-6">
+	                                                    <div class="form-floating">
+	                                                        <input class="form-control join_info" id="member_pwd_check" type="password" placeholder="Password_Check"/>
+	                                                        <label for="member_pwd_check">Password_Check</label>
+	                                                        <div id="password-eqError" class="text-danger"></div>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
