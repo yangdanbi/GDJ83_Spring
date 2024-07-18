@@ -16,7 +16,7 @@
 		<div id="layoutSidenav_content">
 		
 		
-		<form action="./join" method="post">
+		<form action="./join" method="post" id="frm">
 			<div id="layoutAuthentication">
 	            <div id="layoutAuthentication_content">
 	                <main>
@@ -30,41 +30,49 @@
 	                                            <div class="row mb-3">
 	                                                <div class="col-md-6">
 	                                                    <div class="form-floating mb-3 mb-md-0">
-	                                                        <input class="form-control" id="member_id" type="text" placeholder="ID" name="member_id" />
+	                                                        <input class="form-control join_info" id="member_id" type="text" placeholder="ID" name="member_id" />
 	                                                        <label for="member_id">ID</label>
 	                                                    </div>
 	                                                </div>
 	                                                <div class="col-md-6">
 	                                                    <div class="form-floating">
-	                                                        <input class="form-control" id="member_pwd" type="password" placeholder="Password" name="member_pwd" />
+	                                                        <input class="form-control join_info" id="member_pwd" type="password" placeholder="Password" name="member_pwd" />
 	                                                        <label for="member_pwd">Password</label>
+	                                                        <div id="password-error" class="text-danger"></div>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
 	                                            <div class="form-floating mb-3">
-	                                                <input class="form-control" id="inputEmail" type="email" placeholder="email@example.com" name="email"/>
+	                                                <input class="form-control join_info" id="email" type="email" placeholder="email@example.com" name="email"/>
 	                                                <label for="email">Email 주소</label>
 	                                            </div>
 	                                            <div class="row mb-3">
 	                                                <div class="col-md-6">
 	                                                    <div class="form-floating mb-3 mb-md-0">
-	                                                        <input class="form-control" id="member_name" type="text" placeholder="Name" name="member_name"/>
+	                                                        <input class="form-control join_info" id="member_name" type="text" placeholder="Name" name="member_name"/>
 	                                                        <label for="member_name">이름</label>
 	                                                    </div>
 	                                                </div>
 	                                                <div class="col-md-6">
 	                                                    <div class="form-floating mb-3 mb-md-0">
-	                                                        <input class="form-control" id="member_number" type="text" placeholder="Resident registration number" name="member_number"/>
+	                                                        <input class="form-control join_info" id="member_number" type="text" placeholder="Resident registration number" name="member_number"/>
 	                                                        <label for="member_number">주민번호</label>
 	                                                    </div>
 	                                                </div>
 	                                            </div>
 	                                            <div class="form-floating mb-3">
-	                                                <input class="form-control" id="phone" type="text" placeholder="010-XXXX-XXXX" name="phone"/>
+	                                                <input class="form-control join_info" id="phone" type="text" placeholder="010-XXXX-XXXX" name="phone"/>
 	                                                <label for="phone">전화번호</label>
 	                                            </div>
+	                                            
 	                                            <div class="row mb-2 mt-4 mx-0 px-0">
-	                                                <button type="submit" class="btn btn-primary">회원가입</button>
+	                                                <button type="button" id="add_img_btn" class="btn btn-secondary mb-2">사진파일추가</button>
+	                                            </div>
+	                                            <div id="result">
+	                                            </div>
+	                                            
+	                                            <div class="row mb-2 mt-4 mx-0 px-0">
+	                                                <button type="button" id="btn" class="btn btn-primary">회원가입</button>
 	                                            </div>
 	                                        </form>
 	                                    </div>
@@ -94,5 +102,7 @@
 	</div>
 	
 	<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
+	<script type="text/javascript" src="../resources/js/member/memberJoinCheck.js"></script>
+	<script type="text/javascript" src="../resources/js/commons/files.js"></script>
 </body>
 </html>
