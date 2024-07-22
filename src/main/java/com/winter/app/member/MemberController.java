@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.account.AccountDTO;
 
@@ -25,11 +26,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(MemberDTO memberDTO, Model model) throws Exception {
+	public String join(MemberDTO memberDTO, Model model, MultipartFile files, HttpSession session) throws Exception {
 		System.out.println("MemberController join()");
 		// System.out.println(memberDTO.getMember_name());
 
-		int result = memberService.join(memberDTO);
+		int result = memberService.join(memberDTO, files, session);
 		String url = "";
 		if (result > 0) {
 			url = "commons/message";
@@ -75,7 +76,7 @@ public class MemberController {
 		memberDTO = memberService.login(memberDTO);
 		if (memberDTO != null) {// map에 dto가 담겨있음
 			session.setAttribute("member", memberDTO);
-			//session.setAttribute("account", accountDTO);
+			// session.setAttribute("account", accountDTO);
 
 			url = "commons/message";
 			model.addAttribute("result", "로그인 성공했습니다.");
@@ -176,6 +177,5 @@ public class MemberController {
 //		System.out.println(str.toString());// nullPoint 에러 str이 null
 //
 //	}
-	
 
 }

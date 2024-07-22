@@ -5,9 +5,11 @@
   <configuration>
   <typeAliases>
   		<typeAlias type="com.winter.app.product.ProductDTO" alias="ProductDTO"/>
+  			<typeAlias type="com.winter.app.product.ProductFileDTO" alias="ProductFileDTO"/>
   		<typeAlias type="java.util.Map" alias="Map"/>
   		
   		<typeAlias type="com.winter.app.member.MemberDTO" alias="MemberDTO"/>
+  		<typeAlias type="com.winter.app.member.MemberFileDTO" alias="MemberFileDTO"/>
   		
   		<typeAlias type="com.winter.app.account.AccountDTO" alias="AccountDTO"/>
   		
