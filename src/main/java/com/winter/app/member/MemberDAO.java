@@ -11,7 +11,7 @@ public class MemberDAO {
 	private final String NAMESPACE = "com.winter.app.member.MemberDAO.";
 
 	// ㅇemberDTO를 보내줘야함
-	public int join(MemberDTO memberDTO) {
+	public int join(MemberDTO memberDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "join", memberDTO);
 
 	}

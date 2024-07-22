@@ -11,12 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.files.FileManager;
 import com.winter.app.util.Pager;
 
 @Service
 public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
+
+	@Autowired
+	private FileManager fileManager;
 
 	public List<ProductDTO> getList(Pager pager) throws Exception {
 		// page가 1이면 2 3 4
@@ -38,7 +42,7 @@ public class ProductService {
 	}
 
 	public int add(ProductDTO productDTO, MultipartFile[] files, HttpSession session) throws Exception {
-		Long num = productDAO.getNum();
+		int num = productDAO.getNum();
 		productDTO.setProduct_id(num);
 		int result = productDAO.add(productDTO);
 		if (files == null) {
@@ -58,6 +62,11 @@ public class ProductService {
 
 		// 2. 저장할 파일명 생성
 		for (MultipartFile f : files) {
+			if (f.isEmpty()) {
+				continue;
+			}
+
+			// 2. 저장할 파일명 생성
 			String fileName = UUID.randomUUID().toString();
 			fileName = fileName + " " + f.getOriginalFilename();
 
@@ -69,7 +78,9 @@ public class ProductService {
 			ProductFileDTO productFileDTO = new ProductFileDTO();
 			productFileDTO.setFile_name(fileName);
 			productFileDTO.setOri_name(f.getOriginalFilename());
-			productFileDTO.setFile_name(fileName);
+			// productFileDTO.setFile_name(fileName);
+			result = productDAO.addFile(productFileDTO);
+
 		}
 		return result;
 	}

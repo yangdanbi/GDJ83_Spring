@@ -8,16 +8,16 @@
 
 <insert id="addFile" parameterType="MemberFileDTO">
   		INSERT INTO MEMBERFILES 
-  		VALUES (FILES_SEQ.NEXTVAL, #{member_id}, #{fileName}, #{oriName})
+  		VALUES (FILES_SEQ.NEXTVAL, #{member_id}, #{file_name}, #{ori_name})
   	</insert>
 
 
 <!-- resultType은 없지만 int가 리턴 -->
-	<select id="join" parameterType="MemberDTO">
+	<insert id="join" parameterType="MemberDTO">
 		INSERT INTO MEMBER (MEMBER_ID,MEMBER_PWD,MEMBER_NAME,MEMBER_NUMBER,PHONE,EMAIL)
 		VALUES(#{member_id},#{member_pwd},#{member_name},#{member_number},
 		#{phone},#{email})
-	</select>
+	</insert>
 		
 	<select id="login" parameterType="MemberDTO" resultType="memberDTO" >
 		SELECT MEMBER_ID,MEMBER_PWD,MEMBER_NAME

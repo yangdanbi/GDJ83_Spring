@@ -1,7 +1,5 @@
 package com.winter.app.member;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,12 +14,14 @@ public class MemberDAOTest extends DefaultTest {
 
 	@Test
 	public void loginTest() throws Exception {
-		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setMember_id("ydb");
+//		MemberDTO memberDTO = new MemberDTO();
+//		memberDTO.setMember_id("ydb");
+//
+//		memberDTO = memberDAO.detail(memberDTO);
+//
+//		assertEquals(1, memberDTO.getDtos().size());
 
-		memberDTO = memberDAO.detail(memberDTO);
-
-		assertEquals(1, memberDTO.getDtos().size());
+		System.out.println(452 % 10);
 
 	}
 

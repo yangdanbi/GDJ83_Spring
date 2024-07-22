@@ -77,6 +77,12 @@
 			   ,#{product_rate}
 			   ,#{product_detail})
 	</select>
+	
+  	<insert id="addFile" parameterType="ProductFileDTO">
+  		INSERT INTO 
+  		PRODUCTFILES
+  		VALUES (FILES_SEQ.NEXTVAL, #{product_id}, #{file_name}, #{ori_name})
+  	</insert>
 
 	<select id="delete" parameterType="ProductDTO">
 		DELETE 

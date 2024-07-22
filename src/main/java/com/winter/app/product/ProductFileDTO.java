@@ -3,13 +3,13 @@ package com.winter.app.product;
 import com.winter.app.files.FileDTO;
 
 public class ProductFileDTO extends FileDTO {
-	private Long product_id;
+	private int product_id;
 
-	public Long getProduct_id() {
+	public int getProduct_id() {
 		return product_id;
 	}
 
-	public void setProduct_id(Long product_id) {
+	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
 

@@ -28,10 +28,15 @@ public class MemberController {
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(MemberDTO memberDTO, Model model, MultipartFile files, HttpSession session) throws Exception {
 		System.out.println("MemberController join()");
-		// System.out.println(memberDTO.getMember_name());
+		System.out.println("입력 : " + memberDTO.getMember_id());
+		System.out.println("입력 : " + memberDTO.getMember_name());
+		System.out.println("입력 : " + memberDTO.getMember_number());
+		System.out.println("입력 : " + memberDTO.getMember_pwd());
+		System.out.println("입력 : " + memberDTO.getPhone());
 
 		int result = memberService.join(memberDTO, files, session);
 		String url = "";
+		System.out.println("입력2 : " + memberDTO.getMember_id());
 		if (result > 0) {
 			url = "commons/message";
 			model.addAttribute("result", "회원가입 성공했습니다.");

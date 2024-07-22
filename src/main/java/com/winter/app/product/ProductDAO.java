@@ -37,9 +37,14 @@ public class ProductDAO {
 		return sqlSession.insert(NAMESPACE + "add", productDTO);
 	}
 
-	public int getNum(ProductDTO productDTO) throws Exception {
+	public int addFile(ProductFileDTO productFileDTO) throws Exception {
 
-		return sqlSession.insert(NAMESPACE + "getNum", productDTO);
+		return sqlSession.insert(NAMESPACE + "addFile", productFileDTO);
+	}
+
+	public int getNum() throws Exception {
+
+		return sqlSession.insert(NAMESPACE + "getNum");
 	}
 
 	public int delete(ProductDTO productDTO) throws Exception {

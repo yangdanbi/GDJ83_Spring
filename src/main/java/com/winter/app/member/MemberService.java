@@ -1,18 +1,14 @@
 package com.winter.app.member;
 
-import java.io.File;
-import java.util.Calendar;
-import java.util.UUID;
-
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.account.AccountDAO;
+import com.winter.app.files.FileManager;
 
 @Service
 public class MemberService {
@@ -20,6 +16,8 @@ public class MemberService {
 	private MemberDAO memberDAO;
 	@Autowired
 	private AccountDAO accountDAO;
+	@Autowired
+	private FileManager fileManager;
 
 	public int join(MemberDTO memberDTO, MultipartFile files, HttpSession session) throws Exception {
 		int result = memberDAO.join(memberDTO);
@@ -34,44 +32,45 @@ public class MemberService {
 
 		System.out.println(path);
 
-		File file = new File(path);
-
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-
-		// 2. 파일명??
-		// 1) 시간
-		Calendar calendar = Calendar.getInstance();
-		long n = calendar.getTimeInMillis();
-
-		// subString
-		String fileName = files.getOriginalFilename();
-		fileName = fileName.substring(fileName.lastIndexOf("."));
-		System.out.println(fileName);
-
-		// split, StringTokenizer
-		fileName = files.getOriginalFilename();
-		String[] names = fileName.split("\\.");
-		fileName = names[names.length - 1];
-
-		System.out.println(fileName);
-		fileName = n + "." + fileName;
-
-		fileName = n + "_" + files.getOriginalFilename();
-
-		// 2)
-		fileName = UUID.randomUUID().toString() + "_" + files.getOriginalFilename();
-		System.out.println(fileName);
-
-		// 3. HDD에 파일 저장
-		file = new File(file, fileName);
-
-		// 1) MultipartFile
-		// files.transferTo(file);
-
-		// 2) FileCopyUtils
-		FileCopyUtils.copy(files.getBytes(), file);
+		String fileName = fileManager.fileSave(path, files);
+//		File file = new File(path);
+//
+//		if (!file.exists()) {
+//			file.mkdirs();
+//		}
+//
+//		// 2. 파일명??
+//		// 1) 시간
+//		Calendar calendar = Calendar.getInstance();
+//		long n = calendar.getTimeInMillis();
+//
+//		// subString
+//		String fileName = files.getOriginalFilename();
+//		fileName = fileName.substring(fileName.lastIndexOf("."));
+//		System.out.println(fileName);
+//
+//		// split, StringTokenizer
+//		fileName = files.getOriginalFilename();
+//		String[] names = fileName.split("\\.");
+//		fileName = names[names.length - 1];
+//
+//		System.out.println(fileName);
+//		fileName = n + "." + fileName;
+//
+//		fileName = n + "_" + files.getOriginalFilename();
+//
+//		// 2)
+//		fileName = UUID.randomUUID().toString() + "_" + files.getOriginalFilename();
+//		System.out.println(fileName);
+//
+//		// 3. HDD에 파일 저장
+//		file = new File(file, fileName);
+//
+//		// 1) MultipartFile
+//		// files.transferTo(file);
+//
+//		// 2) FileCopyUtils
+//		FileCopyUtils.copy(files.getBytes(), file);
 
 		MemberFileDTO memberFileDTO = new MemberFileDTO();
 		memberFileDTO.setMember_id(memberDTO.getMember_id());
