@@ -41,16 +41,7 @@
 				</form>
 			</div>		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		<c:import url="/WEB-INF/views/sample/footer.jsp"></c:import>
 		</div>	

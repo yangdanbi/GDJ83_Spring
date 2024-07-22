@@ -6,6 +6,12 @@
 
 <mapper namespace="com.winter.app.member.MemberDAO">
 
+<insert id="addFile" parameterType="MemberFileDTO">
+  		INSERT INTO MEMBERFILES 
+  		VALUES (FILES_SEQ.NEXTVAL, #{member_id}, #{fileName}, #{oriName})
+  	</insert>
+
+
 <!-- resultType은 없지만 int가 리턴 -->
 	<select id="join" parameterType="MemberDTO">
 		INSERT INTO MEMBER (MEMBER_ID,MEMBER_PWD,MEMBER_NAME,MEMBER_NUMBER,PHONE,EMAIL)

@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -39,20 +38,20 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		Object obj = session.getAttribute("member");
-
-		if (obj != null) {
-			chain.doFilter(request, response);
-		} else {
-			// 1.forward
-			request.setAttribute("result", "권한이 없습니다.");
-			request.setAttribute("url", "/member/login");
-			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/commons/message.jsp");
-			view.forward(request, response);
-			// 2. redirect
+		chain.doFilter(request, response);
+//		if (obj != null) {
+//			chain.doFilter(request, response);
+//		} else {
+//			// 1.forward
+//			request.setAttribute("result", "권한이 없습니다.");
+//			request.setAttribute("url", "/member/login");
+//			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/commons/message.jsp");
+//			view.forward(request, response);
+		// 2. redirect
 //			HttpServletResponse res = (HttpServletResponse) response;
 //			res.sendRedirect("/member/login");
 
-		}
+		// }
 
 	}
 

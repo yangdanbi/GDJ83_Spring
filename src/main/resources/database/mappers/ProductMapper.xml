@@ -64,12 +64,15 @@
 		FROM PRODUCT 
 		WHERE PRODUCT_ID = #{product_id}
 	</select>
+	<select id="getNum" resultType="Long">
+		SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+	</select>
 
 	<!-- resultType은 없지만 int가 리턴 -->
 	<select id="add" parameterType="ProductDTO">
 		INSERT INTO 
 		PRODUCT
-		VALUES(PRODUCT_SEQ.NEXTVAL
+		VALUES(#{product_id}
 			   ,#{product_type}
 			   ,#{product_rate}
 			   ,#{product_detail})
