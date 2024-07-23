@@ -63,7 +63,7 @@ public class ProductController {
 			url = "redirect:./list";
 		} else {
 			url = "commons/message";
-			model.addAttribute("result", "부서등록에 실패했습니다.");
+			model.addAttribute("result", "등록에 실패했습니다.");
 			model.addAttribute("url", "./list");
 		}
 		return url;

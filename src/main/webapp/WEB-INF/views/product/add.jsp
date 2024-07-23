@@ -16,7 +16,7 @@
 		<div id="layoutSidenav_content">
 		
 			<div class="container col-md-4 mt-5 justify-content-center">
-				 <form method="post" enctype="multipart/form-data">
+				 <form method="post"  action="./add"  enctype="multipart/form-data">
 					<div class="mb-2">
 						<label for="product_type" class="form-label">상품 이름</label>
 						<input type="text" class="form-control" id="product_type" name="product_type">

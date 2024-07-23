@@ -58,13 +58,41 @@
 		<!-- ]]> -->
 	</select>
 
-	<select id="getDetail" resultType="ProductDTO"
+	<select id="getDetail" resultMap="getDetailResult"
 		parameterType="ProductDTO">
-		SELECT * 
-		FROM PRODUCT 
-		WHERE PRODUCT_ID = #{product_id}
+	 	SELECT P.*, BF.* 
+		FROM PRODUCT P
+		 	 LEFT JOIN
+  			 PRODUCTFILES BF 
+  			 ON (P.PRODUCT_ID=BF.PRODUCT_ID)
+		WHERE P.PRODUCT_ID = #{product_id}
+		
+		<!-- SELECT * FROM PRODUCT WHERE PRODUCT_ID = #{product_id} -->
+	<!-- 	SELECT B.*, BF.* 
+  		FROM BANKBOOk B
+  			 LEFT JOIN
+  			 BANKBOOKFILES BF 
+  			 ON (B.BOOKNUMBER=BF.BOOKNUMBER)	
+  		WHERE BOOKNUMBER = #{bookNumber} -->
 	</select>
-	<select id="getNum" resultType="Long">
+	
+	
+	  <resultMap type="ProductDTO" id="getDetailResult">
+  		<id column="PRODUCT_ID" property="product_id"/>
+  		<result column="PRODUCT_TYPE" property="product_type"/>
+  		<result column="PRODUCT_RATE" property="product_rate"/>
+  		<result column="PRODUCT_DETAIL" property="product_detail"/>
+  		
+  		<collection property="fileDTOs" javaType="List" ofType="ProductFileDTO">
+  			<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>
+  		</collection>
+  	</resultMap>
+  	
+  	
+  	
+	<select id="getNum" resultType="Integer">
 		SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
 	</select>
 
@@ -81,7 +109,7 @@
   	<insert id="addFile" parameterType="ProductFileDTO">
   		INSERT INTO 
   		PRODUCTFILES
-  		VALUES (FILES_SEQ.NEXTVAL, #{product_id}, #{file_name}, #{ori_name})
+  		VALUES(FILES_SEQ.NEXTVAL, #{product_id}, #{file_name}, #{ori_name})
   	</insert>
 
 	<select id="delete" parameterType="ProductDTO">

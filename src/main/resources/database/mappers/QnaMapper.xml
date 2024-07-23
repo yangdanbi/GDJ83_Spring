@@ -46,6 +46,10 @@
    	</select>
    	
    	<insert id="add" parameterType="QnaDTO" >
+   	<selectKey order="BEFORE" resultType="Integer" keyProperty="board_num">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		
    		INSERT INTO
    		QNA(
    			BOARD_NUM
@@ -58,6 +62,7 @@
    		  , REF
    		  , STEP
    		  , DEPTH
+   		  , DEL
    		    )
 		VALUES(
 				NOTICE_SEQ.NEXTVAL
@@ -67,20 +72,58 @@
 			 , SYSDATE
 			 , SYSDATE
 			 , 'Q'
-			 ,	NOTICE_SEQ.CURRVAL
+			 , #{board_num}
+			 ,	0
 			 ,	0
 			 ,	0
 			  )
  	
    	</insert>
    	
+   	<insert id="addFile" parameterType="BoardFileDTO">
+  		INSERT INTO QNAFILES	VALUES
+  		(
+  			FILES_SEQ.NEXTVAL,#{board_num}, #{file_name}, #{ori_name}
+  		)	
+
+  	</insert>
+   	
    	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO"> 
-   		SELECT * 
-   		FROM QNA
-   		WHERE BOARD_NUM = ${board_num} 
-   						  AND
-   						  DEL = 0
+   		SELECT Q.*, QF.*  
+   		FROM QNA Q
+   			LEFT JOIN
+   			 QNAFILES QF 
+   			 ON Q.board_num = QF.board_num
+   		WHERE Q.BOARD_NUM = ${board_num} 
+   						  
+   						  
+   	<!-- 	SELECT Q.*, QF.* 
+  		FROM QNA Q
+  			 LEFT JOIN
+  			 QNAFILES QF 
+  			 ON Q.boardNum = QF.boardNum
+  		WHERE Q.BOARDNUM=#{boardNum} -->
    	</select>
+   	
+   	<resultMap type="QnaDTO" id="detailResult">
+  		<id column="BOARD_NUM" property="board_num"/>
+  		<result column="BOARD_WRITER" property="board_writer"/>
+  		<result column="BOARD_CONTENTS" property="board_contents"/>
+  		<result column="BOARD_TITLE" property="board_title"/>
+  		<result column="CREATE_DATE" property="create_date"/>
+  		<result column="UPDATE_DATE" property="update_date"/>
+  		<result column="BOARD_HIT" property="board_hit"/>
+  		<result column="BOARD_CATEGORY" property="board_category"/>
+  		<result column="REF" property="ref"/>
+  		<result column="STEP" property="step"/>
+  		<result column="DEPTH" property="depth"/>
+  		<result column="DEL" property="del"/>
+  		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+  			<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>  		
+  		</collection>
+  	</resultMap>
    	
    	   	<insert id="reply" parameterType="QnaDTO" >
    		INSERT INTO

@@ -14,6 +14,8 @@
 	<div id="layoutSidenav">
 		<c:import url="/WEB-INF/views/sample/sideBar.jsp"></c:import>
 		<div id="layoutSidenav_content">
+			
+			<div class="container col-md-6 mt-5 justify-content-center">
 			<div>
                   	<c:if test="${not empty member.memberFileDTO}">
                   	<img alt="" src="/resources/upload/members/${member.memberFileDTO.file_name}">
@@ -24,7 +26,6 @@
                   	</c:if>
                   </div>
 	
-			<div class="container col-md-6 mt-5 justify-content-center">
 				<table class="table">
 					<thead>
 						<tr>
@@ -93,19 +94,8 @@
 		
 			<div class="container col-md-6 mt-3 justify-content-center">
 				
-				
-				
-			</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<c:import url="/WEB-INF/views/sample/footer.jsp"></c:import>
+		</div>
+			
 		</div>	
 	</div>
 	

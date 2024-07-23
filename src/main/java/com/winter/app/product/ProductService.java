@@ -1,8 +1,6 @@
 package com.winter.app.product;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -42,8 +40,9 @@ public class ProductService {
 	}
 
 	public int add(ProductDTO productDTO, MultipartFile[] files, HttpSession session) throws Exception {
-		int num = productDAO.getNum();
+		Integer num = productDAO.getNum();
 		productDTO.setProduct_id(num);
+		System.out.println("Product_id " + productDTO.getProduct_id());
 		int result = productDAO.add(productDTO);
 		if (files == null) {
 			return result;
@@ -52,13 +51,13 @@ public class ProductService {
 		ServletContext servletContext = session.getServletContext();
 		String path = servletContext.getRealPath("resources/upload/products");
 
-		System.out.println(path);
+		System.out.println("path " + path);
 
-		File file = new File(path);
-
-		if (!file.exists()) {
-			file.mkdir();
-		}
+//		File file = new File(path);
+//
+//		if (!file.exists()) {
+//			file.mkdir();
+//		}
 
 		// 2. 저장할 파일명 생성
 		for (MultipartFile f : files) {
@@ -67,12 +66,13 @@ public class ProductService {
 			}
 
 			// 2. 저장할 파일명 생성
-			String fileName = UUID.randomUUID().toString();
-			fileName = fileName + " " + f.getOriginalFilename();
-
-			// 3. HDD에 파일 저장
-			File f2 = new File(file, fileName);
-			f.transferTo(f2);
+			String fileName = fileManager.fileSave(path, f);
+//			String fileName = UUID.randomUUID().toString();
+//			fileName = fileName + " " + f.getOriginalFilename();
+//
+//			// 3. HDD에 파일 저장
+//			File f2 = new File(file, fileName);
+//			f.transferTo(f2);
 
 			// 4. 파일 정보를 db에 저장
 			ProductFileDTO productFileDTO = new ProductFileDTO();
@@ -81,7 +81,9 @@ public class ProductService {
 			// productFileDTO.setFile_name(fileName);
 			result = productDAO.addFile(productFileDTO);
 
+			System.out.println("fileName" + productFileDTO.getFile_name());
 		}
+
 		return result;
 	}
 

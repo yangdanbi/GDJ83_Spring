@@ -118,7 +118,7 @@ public class MemberController {
 //		String url = "";
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		memberDTO = memberService.detail(memberDTO);
-		System.out.println(memberDTO.getMemberFileDTO().getFile_name());
+		// System.out.println(memberDTO.getMemberFileDTO().getFile_name());
 		model.addAttribute("member", memberDTO);
 //
 //		if (session.getAttribute("member") == null) {

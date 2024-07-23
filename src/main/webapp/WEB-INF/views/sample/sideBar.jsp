@@ -18,6 +18,9 @@
 					</div> 게시판
 					<div class="sb-sidenav-collapse-arrow">
 						<i class="fas fa-angle-down"></i>
+						<a class="nav-link" href="/qna/list"> qna </a>
+						<a class="nav-link" href="/notice/list"> notice </a>
+		
 					</div>
 				</a>
 				<div class="collapse" id="collapsePages"
@@ -45,7 +48,14 @@
 				<div class="sb-sidenav-menu-heading">YDB Bank</div>
 				<a class="nav-link" href="/product/list"> YDB금융 상품 </a>
 			</div>
-		</div>
+			
+			<div class="sb-sidenav-menu-heading">게시판</div>
+				<a class="nav-link" href="/qna/list"> qna </a>
+				</div>
+			<div class="sb-sidenav-menu-heading">게시판</div>
+						<a class="nav-link" href="/notice/list"> notice </a>
+				</div>	
+		
 		<div class="sb-sidenav-footer">
 			<div class="small">Logged in as:</div>
 			Start Bootstrap

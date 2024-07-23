@@ -19,6 +19,8 @@
 			
 			
 			<div class="container col-md-5 mt-5 justify-content-center">
+			
+			
 				<table class="table">
 					<thead>
 						<tr>
@@ -39,8 +41,17 @@
 							<th scope="row">이자율</th>
 							<td>${dto.product_rate}</td>
 						</tr>
+						
+						<tr>
+							<c:forEach items="${dto.fileDTOs}" var="f">
+							<a href="/resources/upload/products/${f.file_name}">${f.ori_name}</a>
+
+							</c:forEach>
+						</tr>
+				
 					</tbody>
 				</table>
+				
 				
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 					<button type = "submit" class="btn btn-primary" onclick="location.href ='/account/add?product_id=${dto.product_id}' ">계좌 개설</button>
@@ -65,7 +76,7 @@
 			
 			
 			
-		<c:import url="/WEB-INF/views/sample/footer.jsp"></c:import>
+		
 		</div>	
 	</div>
 	

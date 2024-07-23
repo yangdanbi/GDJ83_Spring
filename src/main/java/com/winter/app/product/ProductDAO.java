@@ -42,9 +42,9 @@ public class ProductDAO {
 		return sqlSession.insert(NAMESPACE + "addFile", productFileDTO);
 	}
 
-	public int getNum() throws Exception {
+	public Integer getNum() throws Exception {
 
-		return sqlSession.insert(NAMESPACE + "getNum");
+		return sqlSession.selectOne(NAMESPACE + "getNum");
 	}
 
 	public int delete(ProductDTO productDTO) throws Exception {

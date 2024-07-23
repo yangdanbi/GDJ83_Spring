@@ -3,7 +3,7 @@ package com.winter.app.product;
 import java.util.List;
 
 public class ProductDTO {
-	private int product_id;
+	private Integer product_id;
 	private String product_type;
 	private double product_rate;
 	private String product_detail;
@@ -17,11 +17,11 @@ public class ProductDTO {
 		this.fileDTOs = fileDTOs;
 	}
 
-	public int getProduct_id() {
+	public Integer getProduct_id() {
 		return product_id;
 	}
 
-	public void setProduct_id(int product_id) {
+	public void setProduct_id(Integer product_id) {
 		this.product_id = product_id;
 	}
 

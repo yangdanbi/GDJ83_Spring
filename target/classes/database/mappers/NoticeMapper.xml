@@ -55,6 +55,13 @@
    		</select>
    		
    		<select id="detail" resultType="NoticeDTO" parameterType="NoticeDTO">
+   		SELECT N.*, NF.* 
+  		FROM NOTICE N
+  			 LEFT JOIN
+  			 NOTICEFILES NF 
+  			 ON N.board_num = NF.board_num
+  		WHERE N.BOARD_NUM=#{board_num}
+   		<!-- 
    			SELECT BOARD_NUM
 				,	BOARD_WRITER
 				,   BOARD_TITLE
@@ -65,8 +72,24 @@
 				,   BOARD_HIT
 			FROM NOTICE
 			WHERE BOARD_NUM=#{board_num}	   
-
+ -->
    		</select>	
+   		
+   		<resultMap type="NoticeDTO" id="detailResult">
+  		<id column="BOARD_NUM" property="board_num"/>
+  		<result column="BOARD_WRITER" property="board_writer"/>
+  		<result column="BOARD_CONTENTS" property="board_contents"/>
+  		<result column="BOARD_TITLE" property="board_title"/>
+  		<result column="CREATE_DATE" property="create_date"/>
+  		<result column="UPDATE_DATE" property="update_date"/>
+  		<result column="BOARD_HIT" property="board_hit"/>
+  		<result column="BOARD_CATEGORY" property="board_category"/>
+  		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+  			<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>  		
+  		</collection>
+  	</resultMap>	
    		
    		<delete id="delete" parameterType="NoticeDTO">
    			DELETE FROM NOTICE
@@ -108,6 +131,14 @@
 		 SET BOARD_HIT = BOARD_HIT + 1
 			WHERE BOARD_NUM = #{board_num}
  	</update>
+ 	
+ 	<insert id="addFile" parameterType="BoardFileDTO">
+  		INSERT INTO QNA	VALUES
+  		(
+  			FILES_SEQ.NEXTVAL,#{board_num}, #{file_name}, #{ori_name}
+  		)	
+
+  	</insert>
    </mapper>
    
    
