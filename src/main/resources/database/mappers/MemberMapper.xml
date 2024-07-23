@@ -26,11 +26,14 @@
 	</select>
 	
 	<select id="detail" parameterType="MemberDTO" resultMap="loginResult">
-		SELECT M.*,P.*
+		SELECT M.*,P.*,MF.*
 		FROM MEMBER M 
 			 LEFT JOIN 
 			 PRODUCT_INFO P
 			 	ON M.MEMBER_ID = P.MEMBER_ID
+			 	 LEFT JOIN
+		 	 MEMBERFILES MF
+		 	 ON M.MEMBER_ID = MF.MEMBER_ID  
 		WHERE M.MEMBER_ID =#{member_id}
 	</select>
 	<resultMap type="MemberDTO" id="loginResult">
@@ -43,6 +46,13 @@
 		<result column="MEMBER_NUMBER" property="member_number"/> 
 		<result column="PHONE" property="phone"/> 
 		<result column="EMAIL" property="email"/> 
+		
+			<association property="memberFileDTO" javaType="MemberFileDTO">
+  			<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>
+  		</association>
+		
 		<!-- 1:N 통장 product_info  -->
 		<collection property="dtos" javaType="java.util.List" ofType="AccountDTO">
 			<id column="PRODUCT_ID" property="product_id"/>

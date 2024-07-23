@@ -19,7 +19,7 @@
 		<!-- <form action="./join" method="post" id="frm"> -->
 			<div id="layoutAuthentication">
 	            <div id="layoutAuthentication_content">
-	                <main>
+	              
 	                    <div class="container">
 	                        <div class="row justify-content-center">
 	                            <div class="col-lg-7">
@@ -27,7 +27,7 @@
 	                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">회원가입</h3></div>
 										<form id="frm" action="./join" method="post" enctype="multipart/form-data">
 											<div class="card-body">
-											<form>
+										
 												<div class="form-floating mb-3">
 													<input class="form-control ch" id="member_id"
 														type="text" placeholder="ID" name="member_id" />
@@ -83,13 +83,13 @@
 												
 												
 												</div>
-
+									</div>
 												<div class="row mb-2 mt-4 mx-0 px-0">
 													<button type="button" id="btn" class="btn btn-primary">회원가입</button>
 												</div>
 												</form>
 											</div>
-										</form>
+									
 										<div class="card-footer text-center py-3">
 	                                        <div class="small"><a href="/member/login">로그인</a></div>
 	                                    </div>
@@ -97,7 +97,7 @@
 	                            </div>
 	                        </div>
 	                    </div>
-	                </main>
+	              
 	            </div>   
 	        </div>
 	
@@ -111,7 +111,7 @@
 		
 		<c:import url="/WEB-INF/views/sample/footer.jsp"></c:import>
 		</div>	
-	</div>
+	
 	
 	<c:import url="/WEB-INF/views/sample/bootFooter.jsp"></c:import>
 	<script type="text/javascript" src="../resources/js/member/memberJoinCheck.js"></script>

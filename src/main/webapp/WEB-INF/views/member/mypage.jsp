@@ -14,10 +14,16 @@
 	<div id="layoutSidenav">
 		<c:import url="/WEB-INF/views/sample/sideBar.jsp"></c:import>
 		<div id="layoutSidenav_content">
-		
-		
-		
-		
+			<div>
+                  	<c:if test="${not empty member.memberFileDTO}">
+                  	<img alt="" src="/resources/upload/members/${member.memberFileDTO.file_name}">
+                  	</c:if>
+
+                  	<c:if test="${empty member.memberFileDTO}">
+                  	<img alt="" src="/resources/upload/members/">
+                  	</c:if>
+                  </div>
+	
 			<div class="container col-md-6 mt-5 justify-content-center">
 				<table class="table">
 					<thead>
