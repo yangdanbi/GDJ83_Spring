@@ -18,17 +18,17 @@ public class ProductDAOTest extends DefaultTest {
 
 	// @Test
 	public void pageTest() throws Exception {
-		ProductDTO productDTO = new ProductDTO();
-		long perPage = 10L;
-		long totalCount = productDAO.getTotalCount();
-		long totalPage = totalCount / perPage;
+//		ProductDTO productDTO = new ProductDTO();
+//		long perPage = 10L;
+//		//long totalCount = productDAO.getTotalCount();
+//		long totalPage = totalCount / perPage;
+//
+//		if (totalCount % perPage != 0) {
+//			// totalPage = totalCount / perPage + 1;
+//			totalPage++;
+//		}
 
-		if (totalCount % perPage != 0) {
-			// totalPage = totalCount / perPage + 1;
-			totalPage++;
-		}
-
-		System.out.println("totalPage " + totalPage);
+		// System.out.println("totalPage " + totalPage);
 		// System.out.println("totalCount % perPage : " + 122 % 10);
 		// System.out.println(122 / 10 + 1);
 	}
